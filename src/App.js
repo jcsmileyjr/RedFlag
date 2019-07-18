@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { Component } from "react";
 import './App.css';
+import {Container, Row} from 'react-bootstrap';
 
-import {Container, Row, Col} from 'react-bootstrap';
+import Login from "./components/login.js"; //Login page for all users
 
-function App() {
-  return (
-    <Container>
-      <Row>
-        <Col><h1>Start today</h1></Col>
-      </Row>
-    </Container>
-  );
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state={};
+  }
+  render(){
+    return (
+      <Container>
+        <Row>
+          <Login />
+        </Row>
+      </Container>
+    );
+  }
+
 }
 
 export default App;
