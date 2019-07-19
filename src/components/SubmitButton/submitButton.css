@@ -1,4 +1,6 @@
 .submitButtonStyle {
     box-shadow: 1px 2px 5px 2px rgb(58, 70, 60); /*shadow under the button*/
     color: black;
+    font-weight: bold;
+    padding: 0px 50px 0px 50px;
 }

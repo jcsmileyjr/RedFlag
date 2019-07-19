@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <Container>
         <Row>
-          <Login />
+          <Login redTitle="Red" blackTitle="Flag" />
         </Row>
       </Container>
     );
