@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import './App.css';
 import {Container, Row} from 'react-bootstrap';
 
-import Login from "./components/login.js"; //Login page for all users
+import Login from "./screen/Login/login.js"; //Login page for all users
 
 class App extends Component {
   constructor(props){
