@@ -5,7 +5,7 @@ import {Container, Row, Col, DropdownButton, Dropdown} from 'react-bootstrap';
 import Nav from '../../components/Nav/Nav';
 import InputText from '../../components/InputText/InputText';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
-
+import ActionButton from '../../components/ActionButton/ActionButton';
 //names of the current casinos in Tunica
 const casinoNames = ["GoldStrike", "Horseshoe", "1st Jackpot", "Sam's Town", "Hollywood", "Fitz", "Isle of Capri"];
 const incidentTypes = ["Disputes", "Complaint", "Jackpot", "Crimminal", "Minor Gaming"];
@@ -52,7 +52,15 @@ export default function Incident(props) {
             </section>
 
             {/*Submit Button to create incident and transfer user to active cases page */}
-            <Row><Col><SubmitButton /></Col></Row>                                   
+            <Row><Col><SubmitButton /></Col></Row> 
+
+            {/*Action buttons, Log out and View Cases */} 
+            <section>
+            <Row>
+                <Col><ActionButton buttonColor="danger" title="Log Out" /></Col>
+                <Col><ActionButton buttonColor="warning" title="View Cases" /></Col>
+            </Row> 
+            </section>                                
         </Container>
     );
 }
