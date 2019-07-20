@@ -9,15 +9,15 @@ import Nav from '../../components/Nav/Nav';
 export default function Login(props) {
     return(
         <Container className="center">
-            <Nav redTitle ={props.redTitle} blackTitle={props.blackTitle} />
+            <Nav />
             <Row><Col className="pageTitleStyle">Log-in</Col></Row>
             <section>
-            <Row><Col>User Name</Col></Row>            
-            <Row><Col><InputText /></Col></Row>
+                <Row><Col>User Name</Col></Row>            
+                <Row><Col><InputText /></Col></Row>
             </section>
             <section>
-            <Row><Col>Password</Col></Row>
-            <Row><Col><InputText /></Col></Row>
+                <Row><Col>Password</Col></Row>
+                <Row><Col><InputText /></Col></Row>
             </section>
             
             <Row><Col><SubmitButton /></Col></Row>
