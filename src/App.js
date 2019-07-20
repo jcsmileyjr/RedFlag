@@ -3,6 +3,7 @@ import './App.css';
 import {Container, Row} from 'react-bootstrap';
 
 import Login from "./screen/Login/login.js"; //Login page for all users
+import Incident from "./screen/Incident/Incident";//Incident report form to create a incident.
 
 class App extends Component {
   constructor(props){
@@ -14,6 +15,7 @@ class App extends Component {
       <Container>
         <Row>
           <Login redTitle="Red" blackTitle="Flag" />
+          <Incident redTitle="Red" blackTitle="Flag" />
         </Row>
       </Container>
     );
