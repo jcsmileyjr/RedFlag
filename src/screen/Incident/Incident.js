@@ -18,7 +18,7 @@ export default function Incident(props) {
     return(
         <Container className="center">
             {/*Nav Bar */}
-            <Nav redTitle ={props.redTitle} blackTitle={props.blackTitle} />
+            <Nav />
 
             {/*Page Title */}
             <Row><Col className="pageTitleStyle">Initial Incident Report</Col></Row>

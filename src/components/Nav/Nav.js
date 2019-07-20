@@ -4,7 +4,7 @@ import "./nav.css"
 const Nav = (props) => (
     <Container>
         <Row>
-            <Col className="navTitleStyle"><span className="redTitle">{props.redTitle}</span>{props.blackTitle}</Col>   
+            <Col className="navTitleStyle"><span className="redTitle">Red</span>Flag</Col>   
         </Row>
     </Container>
 );
