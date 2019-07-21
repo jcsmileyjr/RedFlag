@@ -28,7 +28,7 @@ export default function Login(props) {
                         <Row><Col>Password</Col></Row>
                         <Row><Col><InputText updateState= {context.getPwd} inputType="password" /></Col></Row>
                     </section>
-                                
+
                     <Row><Col><SubmitButton submit={context.logIn}  /></Col></Row>
                 </Container>
             }
