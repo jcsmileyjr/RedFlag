@@ -32,7 +32,7 @@ export default function Incident(props) {
                     {/*User will input Patron/Suspect Name */}
                     <section>
                         <Row><Col>Patron Name</Col></Row>            
-                        <Row><Col><InputText /></Col></Row>
+                        <Row><Col><InputText updateState= {context.getPatronName} inputType="text" /></Col></Row>
                     </section>
 
                     {/*User will choose a casino from a dropdown box */}
@@ -40,7 +40,7 @@ export default function Incident(props) {
                         <Row>
                             <Col>
                                 <DropdownButton size="lg" id="showCasinoNames" title={casino} variant="success">
-                                    {casinoNames.map((name, index) =>(<Dropdown.Item key={index} onClick={()=>setCasino(name)}>{name}</Dropdown.Item>))}
+                                    {casinoNames.map((name, index) =>(<Dropdown.Item key={index} onClick={()=>{setCasino(name);context.getCasino(name)}}>{name}</Dropdown.Item>))}
                                 </DropdownButton>
                             </Col>
                         </Row>
@@ -51,7 +51,7 @@ export default function Incident(props) {
                         <Row>
                             <Col>
                                 <DropdownButton size="lg" id="showIncidentTypes" title={type} variant="success">
-                                    {incidentTypes.map((type, index) =>(<Dropdown.Item key={index} onClick={()=>setType(type)}>{type}</Dropdown.Item>))}
+                                    {incidentTypes.map((type, index) =>(<Dropdown.Item key={index} onClick={()=>{setType(type);context.getIncidentType(type)}}>{type}</Dropdown.Item>))}
                                 </DropdownButton>
                             </Col>
                         </Row>

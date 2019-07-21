@@ -20,6 +20,9 @@ class App extends Component {
       currentView:"logIn",
       userName:"",
       pwd:"",
+      patronName:"",
+      casino:"",
+      incidentType:"",
     };
   }
 
@@ -29,7 +32,7 @@ class App extends Component {
     if(CheckLogIn(this.state.userName, this.state.pwd)){
       this.setState({currentView: "incident"});
     }else {
-      
+
     }
   }
 
@@ -48,7 +51,10 @@ class App extends Component {
             }
             {this.state.currentView === "incident" && 
               <IncidentReport.Provider value={{
-                logOut:()=> this.setState({currentView:"logIn"})
+                getPatronName: (value)=> this.setState({patronName:value}),
+                getCasino: (value) => this.setState({casino:value}),
+                getIncidentType: (value) => this.setState({incidentType:value}),
+                logOut:()=> this.setState({currentView:"logIn", patronName:"", casino:"",incidentType:"", userName:"", pwd:""})
               }}>
                 <Incident />
               </IncidentReport.Provider>
