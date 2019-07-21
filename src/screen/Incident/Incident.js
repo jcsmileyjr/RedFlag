@@ -57,6 +57,11 @@ export default function Incident(props) {
                         </Row>
                     </section>
 
+                    {/*User will pick a date */}
+                    <section>           
+                        <Row><Col><InputText updateState= {context.getDate} inputType="date" /></Col></Row>
+                    </section>
+
                     {/*Submit Button to create incident and transfer user to active cases page */}
                     <Row><Col><SubmitButton submit={context.reportIncident} /></Col></Row> 
 

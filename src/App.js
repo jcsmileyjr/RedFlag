@@ -24,6 +24,7 @@ class App extends Component {
       patronName:"",
       casino:"",
       incidentType:"",
+      incidentDate:"",
     };
   }
 
@@ -38,7 +39,7 @@ class App extends Component {
   }
 
   initialIncidentReport = () =>{
-    CreateNewIncident(this.state.patronName,this.state.casino, this.state.incidentType, this.state.userName);
+    CreateNewIncident(this.state.patronName,this.state.casino, this.state.incidentType, this.state.incidentDate, this.state.userName);
     this.setState({currentView:"logIn"});
   }
 
@@ -60,7 +61,8 @@ class App extends Component {
                 getPatronName: (value)=> this.setState({patronName:value}),
                 getCasino: (value) => this.setState({casino:value}),
                 getIncidentType: (value) => this.setState({incidentType:value}),
-                logOut:()=> this.setState({currentView:"logIn", patronName:"", casino:"",incidentType:"", userName:"", pwd:""}),
+                getDate: (value)=> this.setState({incidentDate:value}),
+                logOut:()=> this.setState({currentView:"logIn", patronName:"", casino:"",incidentType:"", incidentDate:"", userName:"", pwd:""}),
                 reportIncident:() =>this.initialIncidentReport(),
               }}>
                 <Incident />
