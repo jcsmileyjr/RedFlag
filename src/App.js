@@ -7,29 +7,26 @@ import Incident from "./screen/Incident/Incident";//Incident report form to crea
 
 //notes from https://hackernoon.com/how-do-i-use-react-context-3eeb879169a2 on how to use React's Context
 const UserLogIn = React.createContext({});
-
 const UserLogInProvider = UserLogIn.Provider;
 export const UserLogInConsumer = UserLogIn.Consumer;
+
+export const IncidentReport = React.createContext({});
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      currentView:"login",
+      currentView:"logIn",
       userName:"",
       pwd:"",
     };
   }
-/*
-  login = () =>{
-    this.setState({currentView:"incident"});
-  }
-*/
+
   render(){
     return (
         <Container>
           <Row>
-            {this.state.currentView === "login" && 
+            {this.state.currentView === "logIn" && 
               <UserLogInProvider value={{
                 getUserName: (value)=> this.setState({userName:value}),
                 getPwd: (value) => this.setState({pwd:value}),
@@ -38,7 +35,13 @@ class App extends Component {
                 <Login />
               </UserLogInProvider> 
             }
-            {this.state.currentView === "incident" && <Incident />}
+            {this.state.currentView === "incident" && 
+              <IncidentReport.Provider value={{
+                logOut:()=> this.setState({currentView:"logIn"})
+              }}>
+                <Incident />
+              </IncidentReport.Provider>
+            }
           </Row>
         </Container>
     );
