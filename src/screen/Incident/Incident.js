@@ -9,7 +9,7 @@ import SubmitButton from '../../components/SubmitButton/SubmitButton';
 import ActionButton from '../../components/ActionButton/ActionButton';
 
 //names of the current casinos in Tunica
-const casinoNames = ["GoldStrike", "Horseshoe", "1st Jackpot", "Sam's Town", "Hollywood", "Fitz", "Isle of Capri"];
+const casinoNames = ["GoldStrike", "Horseshoe", "1st Jackpot", "Sam's Town", "Hollywood", "Fitz Casino", "Isle of Capri"];
 
 //type of gaming incidents
 const incidentTypes = ["Disputes", "Complaint", "Jackpot", "Crimminal", "Minor Gaming"];
@@ -39,7 +39,7 @@ export default function Incident(props) {
                     <section>           
                         <Row>
                             <Col>
-                                <DropdownButton size="lg" id="showCasinoNames" title={casino} variant="success" >
+                                <DropdownButton size="lg" id="showCasinoNames" title={casino} variant="secondary" >
                                     {casinoNames.map((name, index) =>(<Dropdown.Item key={index} onClick={()=>{setCasino(name);context.getCasino(name)}}>{name}</Dropdown.Item>))}
                                 </DropdownButton>
                             </Col>
@@ -50,7 +50,7 @@ export default function Incident(props) {
                     <section>           
                         <Row>
                             <Col>
-                                <DropdownButton size="lg" id="showIncidentTypes" title={type} variant="success">
+                                <DropdownButton size="lg" id="showIncidentTypes" title={type} variant="secondary">
                                     {incidentTypes.map((type, index) =>(<Dropdown.Item key={index} onClick={()=>{setType(type);context.getIncidentType(type)}}>{type}</Dropdown.Item>))}
                                 </DropdownButton>
                             </Col>
