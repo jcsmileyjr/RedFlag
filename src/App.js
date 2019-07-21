@@ -4,9 +4,7 @@ import {Container, Row} from 'react-bootstrap';
 
 import Login from "./screen/Login/login.js"; //Login page for all users
 import Incident from "./screen/Incident/Incident";//Incident report form to create a incident.
-import {CheckLogIn} from "./screen/Login/LoginData";
-
-
+import {CheckLogIn} from "./screen/Login/LoginData";//Method use to confirm username and pwd when user logs in
 
 //notes from https://hackernoon.com/how-do-i-use-react-context-3eeb879169a2 on how to use React's Context
 const UserLogIn = React.createContext({});//Context for Login page and elements
@@ -27,9 +25,11 @@ class App extends Component {
 
   //Method to confirm if the user enter username and pwd match a record in the database. If so, go to next screen based on authoration.
   confirmLogIn = () =>{    
-    //calls a method from LoginData.js
+    //calls a method from LoginData.js that checks a database against the username and pwd
     if(CheckLogIn(this.state.userName, this.state.pwd)){
       this.setState({currentView: "incident"});
+    }else {
+      
     }
   }
 
