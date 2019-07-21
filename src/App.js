@@ -8,7 +8,7 @@ import Incident from "./screen/Incident/Incident";//Incident report form to crea
 //notes from https://hackernoon.com/how-do-i-use-react-context-3eeb879169a2 on how to use React's Context
 const UserLogIn = React.createContext({});
 
-export const UserLogInProvider = UserLogIn.Provider;
+const UserLogInProvider = UserLogIn.Provider;
 export const UserLogInConsumer = UserLogIn.Consumer;
 
 class App extends Component {
@@ -32,7 +32,8 @@ class App extends Component {
             {this.state.currentView === "login" && 
               <UserLogInProvider value={{
                 getUserName: (value)=> this.setState({userName:value}),
-                getPwd: (value) => this.setState({pwd:value})
+                getPwd: (value) => this.setState({pwd:value}),
+                logIn: ()=> this.setState({currentView:"incident"}),
                 }}>
                 <Login />
               </UserLogInProvider> 
