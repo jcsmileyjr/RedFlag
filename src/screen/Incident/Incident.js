@@ -6,8 +6,11 @@ import Nav from '../../components/Nav/Nav';
 import InputText from '../../components/InputText/InputText';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
 import ActionButton from '../../components/ActionButton/ActionButton';
+
 //names of the current casinos in Tunica
 const casinoNames = ["GoldStrike", "Horseshoe", "1st Jackpot", "Sam's Town", "Hollywood", "Fitz", "Isle of Capri"];
+
+//type of gaming incidents
 const incidentTypes = ["Disputes", "Complaint", "Jackpot", "Crimminal", "Minor Gaming"];
 
 //Screen that allows the user to create a initial incident report
