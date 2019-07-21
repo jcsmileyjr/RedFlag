@@ -5,6 +5,7 @@ import {Container, Row} from 'react-bootstrap';
 import Login from "./screen/Login/login.js"; //Login page for all users
 import Incident from "./screen/Incident/Incident";//Incident report form to create a incident.
 import {CheckLogIn} from "./screen/Login/LoginData";//Method use to confirm username and pwd when user logs in
+import {CreateNewIncident} from './screen/Incident/IncidentData';//Method to create a new incident from the Incident form page
 
 //notes from https://hackernoon.com/how-do-i-use-react-context-3eeb879169a2 on how to use React's Context
 const UserLogIn = React.createContext({});//Context for Login page and elements
@@ -20,6 +21,10 @@ class App extends Component {
       currentView:"logIn",
       userName:"",
       pwd:"",
+      patronName:"",
+      casino:"",
+      incidentType:"",
+      incidentDate:"",
     };
   }
 
@@ -29,8 +34,13 @@ class App extends Component {
     if(CheckLogIn(this.state.userName, this.state.pwd)){
       this.setState({currentView: "incident"});
     }else {
-      
+
     }
+  }
+
+  initialIncidentReport = () =>{
+    CreateNewIncident(this.state.patronName,this.state.casino, this.state.incidentType, this.state.incidentDate, this.state.userName);
+    this.setState({currentView:"logIn"});
   }
 
   render(){
@@ -48,7 +58,12 @@ class App extends Component {
             }
             {this.state.currentView === "incident" && 
               <IncidentReport.Provider value={{
-                logOut:()=> this.setState({currentView:"logIn"})
+                getPatronName: (value)=> this.setState({patronName:value}),
+                getCasino: (value) => this.setState({casino:value}),
+                getIncidentType: (value) => this.setState({incidentType:value}),
+                getDate: (value)=> this.setState({incidentDate:value}),
+                logOut:()=> this.setState({currentView:"logIn", patronName:"", casino:"",incidentType:"", incidentDate:"", userName:"", pwd:""}),
+                reportIncident:() =>this.initialIncidentReport(),
               }}>
                 <Incident />
               </IncidentReport.Provider>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../../App.css';
+import './incident.css';
 import {Container, Row, Col, DropdownButton, Dropdown} from 'react-bootstrap';
 import {IncidentReport} from '../../App';
 
@@ -9,7 +9,7 @@ import SubmitButton from '../../components/SubmitButton/SubmitButton';
 import ActionButton from '../../components/ActionButton/ActionButton';
 
 //names of the current casinos in Tunica
-const casinoNames = ["GoldStrike", "Horseshoe", "1st Jackpot", "Sam's Town", "Hollywood", "Fitz", "Isle of Capri"];
+const casinoNames = ["GoldStrike", "Horseshoe", "1st Jackpot", "Sam's Town", "Hollywood", "Fitz Casino", "Isle of Capri"];
 
 //type of gaming incidents
 const incidentTypes = ["Disputes", "Complaint", "Jackpot", "Crimminal", "Minor Gaming"];
@@ -32,15 +32,15 @@ export default function Incident(props) {
                     {/*User will input Patron/Suspect Name */}
                     <section>
                         <Row><Col>Patron Name</Col></Row>            
-                        <Row><Col><InputText /></Col></Row>
+                        <Row><Col><InputText updateState= {context.getPatronName} inputType="text" /></Col></Row>
                     </section>
 
                     {/*User will choose a casino from a dropdown box */}
                     <section>           
                         <Row>
                             <Col>
-                                <DropdownButton size="lg" id="showCasinoNames" title={casino} variant="success">
-                                    {casinoNames.map((name, index) =>(<Dropdown.Item key={index} onClick={()=>setCasino(name)}>{name}</Dropdown.Item>))}
+                                <DropdownButton size="lg" id="showCasinoNames" title={casino} variant="secondary" >
+                                    {casinoNames.map((name, index) =>(<Dropdown.Item key={index} onClick={()=>{setCasino(name);context.getCasino(name)}}>{name}</Dropdown.Item>))}
                                 </DropdownButton>
                             </Col>
                         </Row>
@@ -50,15 +50,20 @@ export default function Incident(props) {
                     <section>           
                         <Row>
                             <Col>
-                                <DropdownButton size="lg" id="showIncidentTypes" title={type} variant="success">
-                                    {incidentTypes.map((type, index) =>(<Dropdown.Item key={index} onClick={()=>setType(type)}>{type}</Dropdown.Item>))}
+                                <DropdownButton size="lg" id="showIncidentTypes" title={type} variant="secondary">
+                                    {incidentTypes.map((type, index) =>(<Dropdown.Item key={index} onClick={()=>{setType(type);context.getIncidentType(type)}}>{type}</Dropdown.Item>))}
                                 </DropdownButton>
                             </Col>
                         </Row>
                     </section>
 
+                    {/*User will pick a date */}
+                    <section>           
+                        <Row><Col><InputText updateState= {context.getDate} inputType="date" /></Col></Row>
+                    </section>
+
                     {/*Submit Button to create incident and transfer user to active cases page */}
-                    <Row><Col><SubmitButton /></Col></Row> 
+                    <Row><Col><SubmitButton submit={context.reportIncident} /></Col></Row> 
 
                     {/*Action buttons, Log out and View Cases */} 
                     <section>
