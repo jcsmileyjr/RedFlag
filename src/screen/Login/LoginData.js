@@ -10,6 +10,6 @@ const credentials = [{"username":"test", "pwd":"test", "auth":"agent"}, {"userna
           passFail = true;
         }
     });
-    console.log(passFail);
+   
     return passFail;
   }

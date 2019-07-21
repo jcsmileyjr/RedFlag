@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../../App.css';
+import './incident.css';
 import {Container, Row, Col, DropdownButton, Dropdown} from 'react-bootstrap';
 import {IncidentReport} from '../../App';
 
@@ -39,7 +39,7 @@ export default function Incident(props) {
                     <section>           
                         <Row>
                             <Col>
-                                <DropdownButton size="lg" id="showCasinoNames" title={casino} variant="success">
+                                <DropdownButton size="lg" id="showCasinoNames" title={casino} variant="success" >
                                     {casinoNames.map((name, index) =>(<Dropdown.Item key={index} onClick={()=>{setCasino(name);context.getCasino(name)}}>{name}</Dropdown.Item>))}
                                 </DropdownButton>
                             </Col>
@@ -58,7 +58,7 @@ export default function Incident(props) {
                     </section>
 
                     {/*Submit Button to create incident and transfer user to active cases page */}
-                    <Row><Col><SubmitButton /></Col></Row> 
+                    <Row><Col><SubmitButton submit={context.reportIncident} /></Col></Row> 
 
                     {/*Action buttons, Log out and View Cases */} 
                     <section>
