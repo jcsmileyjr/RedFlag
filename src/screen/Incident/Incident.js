@@ -16,8 +16,8 @@ const incidentTypes = ["Disputes", "Complaint", "Jackpot", "Crimminal", "Minor G
 
 //Screen that allows the user to create a initial incident report
 export default function Incident(props) {
-    const [casino, setCasino] = useState("Casino Name");//react hook to update dropdown select casino button title
-    const [type, setType] = useState("Incident Type");//react hook to update dropdown select incident type button title
+    const [casino, setCasino] = useState("Pick a Casino");//react hook to update dropdown select casino button title
+    const [type, setType] = useState("Pick a Incident");//react hook to update dropdown select incident type button title
 
     return(
         <IncidentReport.Consumer>
@@ -30,20 +30,8 @@ export default function Incident(props) {
                     <Row><Col className="pageTitleStyle">Initial Incident Report</Col></Row>
 
                     {/*User will input Patron/Suspect Name */}
-                    <section>
-                        <Row><Col>Patron Name</Col></Row>            
-                        <Row><Col><InputText updateState= {context.getPatronName} inputType="text" /></Col></Row>
-                    </section>
-
-                    {/*User will choose a casino from a dropdown box */}
-                    <section>           
-                        <Row>
-                            <Col>
-                                <DropdownButton size="lg" id="showCasinoNames" title={casino} variant="secondary" >
-                                    {casinoNames.map((name, index) =>(<Dropdown.Item key={index} onClick={()=>{setCasino(name);context.getCasino(name)}}>{name}</Dropdown.Item>))}
-                                </DropdownButton>
-                            </Col>
-                        </Row>
+                    <section>          
+                        <Row><Col><InputText updateState= {context.getPatronName} inputType="text" text="Type Patron Name" /></Col></Row>
                     </section>
 
                     {/*User will choose a incident type from a dropdown box */}
@@ -55,6 +43,17 @@ export default function Incident(props) {
                                 </DropdownButton>
                             </Col>
                         </Row>
+                    </section>                    
+
+                    {/*User will choose a casino from a dropdown box */}
+                    <section>         
+                        <Row>
+                            <Col>
+                                <DropdownButton size="lg" id="showCasinoNames" title={casino} variant="secondary" >
+                                    {casinoNames.map((name, index) =>(<Dropdown.Item key={index} onClick={()=>{setCasino(name);context.getCasino(name)}}>{name}</Dropdown.Item>))}
+                                </DropdownButton>
+                            </Col>
+                        </Row>
                     </section>
 
                     {/*User will pick a date */}
@@ -63,7 +62,9 @@ export default function Incident(props) {
                     </section>
 
                     {/*Submit Button to create incident and transfer user to active cases page */}
-                    <Row><Col><SubmitButton submit={context.reportIncident} /></Col></Row> 
+                    <section>
+                        <Row><Col><SubmitButton submit={context.reportIncident} /></Col></Row> 
+                    </section>                    
 
                     {/*Action buttons, Log out and View Cases */} 
                     <section>
