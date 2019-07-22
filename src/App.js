@@ -4,6 +4,7 @@ import {Container, Row} from 'react-bootstrap';
 
 import Login from "./screen/Login/login.js"; //Login page for all users
 import Incident from "./screen/Incident/Incident";//Incident report form to create a incident.
+import Reports from './screen/Reports/Report';//Report page showing all active incident reports
 import {CheckLogIn} from "./screen/Login/LoginData";//Method use to confirm username and pwd when user logs in
 import {CreateNewIncident} from './screen/Incident/IncidentData';//Method to create a new incident from the Incident form page
 
@@ -40,7 +41,7 @@ class App extends Component {
 
   initialIncidentReport = () =>{
     CreateNewIncident(this.state.patronName,this.state.casino, this.state.incidentType, this.state.incidentDate, this.state.userName);
-    this.setState({currentView:"logIn"});
+    this.setState({currentView:"reports"});
   }
 
   render(){
@@ -64,9 +65,13 @@ class App extends Component {
                 getDate: (value)=> this.setState({incidentDate:value}),
                 logOut:()=> this.setState({currentView:"logIn", patronName:"", casino:"",incidentType:"", incidentDate:"", userName:"", pwd:""}),
                 reportIncident:() =>this.initialIncidentReport(),
+                showReports:() => this.setState({currentView: "reports"}),
               }}>
                 <Incident />
               </IncidentReport.Provider>
+            }
+            {this.state.currentView ==="reports" &&
+              <Reports />
             }
           </Row>
         </Container>

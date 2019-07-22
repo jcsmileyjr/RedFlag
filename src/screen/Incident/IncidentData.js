@@ -9,6 +9,12 @@ export function CreateNewIncident(patron, casino, incidentType,date ,agent){
     newCase.casinoName = casino;//add the place/casino of the incident
     newCase.incidentType = incidentType;//add the type of incident
     newCase.incidentDate = date;
-console.table(newCase);//TESTING, DELETE DELETE DELETE
+
     activeCases.push(newCase);//add the new incident type to the array of cases
 }
+
+//Method call in the Reports.js to get all active incidents reported
+export function GetReports(){
+    return activeCases;
+}
+
