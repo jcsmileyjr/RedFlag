@@ -68,10 +68,11 @@ export default function Incident(props) {
 
                     {/*Action buttons, Log out and View Cases */} 
                     <section>
-                    <Row>
-                        <Col><ActionButton buttonColor="danger" title="Log Out" submit={context.logOut} /></Col>
-                        <Col><ActionButton buttonColor="warning" title="View Cases" submit={context.showReports} /></Col>
-                    </Row> 
+                        <ActionButton buttonColor="warning" title="View Cases" submit={context.showReports} />
+                    </section>
+
+                    <section>
+                        <ActionButton buttonColor="danger" title="Log Out" submit={context.logOut} />
                     </section>                                
                 </Container>
             }
