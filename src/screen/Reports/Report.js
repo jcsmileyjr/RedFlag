@@ -24,20 +24,20 @@ export default function Reports(props) {
                     {reports.map((report, index)=>(
                         <section className="reportStyle" key={index} style={{backgroundColor:report.color}}>
                             <Row>
-                                <Col className="lineTitle" >Patron Name:</Col>
-                                <Col>{report.patronName}</Col>
+                                <Col xs={{span:5, offset:2}} className="lineTitle" >Patron Name:</Col>
+                                <Col xs={4}>{report.patronName}</Col>
                             </Row>
                             <Row>
-                                <Col className="lineTitle">Casino:</Col>
-                                <Col>{report.casinoName}</Col>
+                                <Col xs={{span:5, offset:2}} className="lineTitle">Casino:</Col>
+                                <Col xs={4}>{report.casinoName}</Col>
                             </Row>
                             <Row>
-                                <Col className="lineTitle">Incident Type:</Col>
-                                <Col>{report.incidentType}</Col>
+                                <Col xs={{span:5, offset:2}} className="lineTitle">Incident Type:</Col>
+                                <Col xs={4}>{report.incidentType}</Col>
                             </Row>
                             <Row>
-                                <Col className="lineTitle">Days Remaining:</Col>
-                                <Col>{report.daysRemaining}</Col>
+                                <Col xs={{span:5, offset:2}} className="lineTitle">Days Remaining:</Col>
+                                <Col xs={4}>{report.daysRemaining}</Col>
                             </Row>
 
                             {props.auth === "supervisor" &&
