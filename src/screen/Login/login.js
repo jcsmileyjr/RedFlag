@@ -7,6 +7,7 @@ import { UserLogInConsumer } from "../../App";//Context api exported in to pass 
 import InputText from '../../components/InputText/InputText.js';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
 import Nav from '../../components/Nav/Nav';
+import Footer from '../../components/Footer/Footer';
 
 //Login page that checks the user-name and password when the submit button is pressed 
 export default function Login(props) {
@@ -32,6 +33,7 @@ export default function Login(props) {
                     </section>
 
                     <Row><Col><SubmitButton submit={context.logIn}  /></Col></Row>
+                    <Footer />
                 </Container>
             }
         </UserLogInConsumer>
