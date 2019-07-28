@@ -22,9 +22,9 @@ export default function Reports(props) {
                     {/*Page Title */}
                     <Row className="center"><Col className="pageTitleStyle">Initial Incident Report</Col></Row>
                     {reports.map((report, index)=>(
-                        <section className="reportStyle" key={index}>
+                        <section className="reportStyle" key={index} style={{backgroundColor:report.color}}>
                             <Row>
-                                <Col className="lineTitle">Patron Name:</Col>
+                                <Col className="lineTitle" >Patron Name:</Col>
                                 <Col>{report.patronName}</Col>
                             </Row>
                             <Row>
