@@ -14,12 +14,12 @@ export default function Reports(props) {
 
             {/*Page Title */}
             <Row><Col className="pageTitleStyle">Initial Incident Report</Col></Row>
-            {reports.map((report)=>(
-                <section>
-                    <Row><Col>Patron Name: {report.agentName}</Col></Row>
-                    <Row><Col>Patron Name: {report.casinoName}</Col></Row>
-                    <Row><Col>Patron Name: {report.incidentType}</Col></Row>
-                    <Row><Col>Patron Name: {report.incidentDate}</Col></Row>
+            {reports.map((report, index)=>(
+                <section key={index}>
+                    <Row><Col>Patron Name: {report.patronName}</Col></Row>
+                    <Row><Col>Casino: {report.casinoName}</Col></Row>
+                    <Row><Col>Incident Type: {report.incidentType}</Col></Row>
+                    <Row><Col>Days Remaining: {report.daysRemaining}</Col></Row>
                 </section>
             ))
 
