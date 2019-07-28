@@ -23,10 +23,22 @@ export default function Reports(props) {
                     <Row className="center"><Col className="pageTitleStyle">Initial Incident Report</Col></Row>
                     {reports.map((report, index)=>(
                         <section className="reportStyle" key={index}>
-                            <Row><Col>Patron Name: {report.patronName}</Col></Row>
-                            <Row><Col>Casino: {report.casinoName}</Col></Row>
-                            <Row><Col>Incident Type: {report.incidentType}</Col></Row>
-                            <Row><Col>Days Remaining: {report.daysRemaining}</Col></Row>
+                            <Row>
+                                <Col className="lineTitle">Patron Name:</Col>
+                                <Col>{report.patronName}</Col>
+                            </Row>
+                            <Row>
+                                <Col className="lineTitle">Casino:</Col>
+                                <Col>{report.casinoName}</Col>
+                            </Row>
+                            <Row>
+                                <Col className="lineTitle">Incident Type:</Col>
+                                <Col>{report.incidentType}</Col>
+                            </Row>
+                            <Row>
+                                <Col className="lineTitle">Days Remaining:</Col>
+                                <Col>{report.daysRemaining}</Col>
+                            </Row>
                         </section>
                     ))
                     }
