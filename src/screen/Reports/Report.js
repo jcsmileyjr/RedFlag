@@ -51,7 +51,7 @@ export default function Reports(props) {
 
                     {/*Action buttons, Log out and View Cases */} 
                     <section className="center">
-                        <ActionButton buttonColor="warning" title="New Incident" submit={context.newIncident} />
+                        <ActionButton buttonColor="success" title="New Incident" submit={context.newIncident} />
                     </section>
 
                     <section className="center">
