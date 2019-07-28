@@ -9,29 +9,30 @@ import {CheckLogIn} from "./screen/Login/LoginData";//Method use to confirm user
 import {CreateNewIncident} from './screen/Incident/IncidentData';//Method to create a new incident from the Incident form page
 
 //notes from https://hackernoon.com/how-do-i-use-react-context-3eeb879169a2 on how to use React's Context
-const UserLogIn = React.createContext({});//Context for Login page and elements
+const UserLogIn = React.createContext({});//Context for Login screen and elements
 const UserLogInProvider = UserLogIn.Provider;
 export const UserLogInConsumer = UserLogIn.Consumer;
 
-export const IncidentReport = React.createContext({});//Context for incident report's page and elements
-export const ReportState = React.createContext({});//Context for report's page and elements
+export const IncidentReport = React.createContext({});//Context for incident report's screen and elements
+export const ReportState = React.createContext({});//Context for report's screen and elements
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      currentView:"logIn",
-      userName:"",
-      pwd:"",
-      patronName:"",
-      casino:"",
-      incidentType:"",
-      incidentDate:"",
-      authoration:"",
+      currentView:"logIn",//route user to different pages in the app
+      userName:"",//username used in login process
+      pwd:"",//password used in login process
+      authoration:"",//authoration use in login process and affect flow of data/screens
+      patronName:"",//name of patron use to create a new report
+      casino:"",//name of patron use to create a new report
+      incidentType:"",//name of patron use to create a new report
+      incidentDate:"",//name of patron use to create a new report      
     };
   }
 
-  //Method to confirm if the user enter username and pwd match a record in the database. If so, go to next screen based on authoration.
+  //Method to confirm if the user enter username and pwd match a record in the database. 
+  //If so, go to next screen based on authoration.
   confirmLogIn = () =>{    
     //calls a method from LoginData.js that checks a database against the username and pwd
     const login = CheckLogIn(this.state.userName, this.state.pwd);
@@ -42,6 +43,8 @@ class App extends Component {
     }
   }
 
+  //Method passed to the incident report page with React Context to create a new incident and 
+  //move the user to the reports screen.
   initialIncidentReport = () =>{
     CreateNewIncident(this.state.patronName,this.state.casino, this.state.incidentType, this.state.incidentDate, this.state.userName);
     this.setState({currentView:"reports"});

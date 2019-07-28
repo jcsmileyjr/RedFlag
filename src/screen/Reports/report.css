@@ -3,12 +3,8 @@
     padding-bottom: .5rem;/*add whitespace under the supervisor's Close out button*/
 }
 
+/*Use to highlight the label for the type of data displayed within each report*/
 .lineTitle {
     font-weight: bold;
     text-indent: 1rem;
-}
-
-.closeOutButtonStyle {
-    margin-top: .5rem;
-    margin-bottom: 2rem;
 }
