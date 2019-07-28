@@ -1,5 +1,6 @@
 import React from "react";
-import '../../App.css';
+import '../../App.css';//global stylesheet
+import './login.css';//stylesheet for this component
 import {Container, Row, Col} from 'react-bootstrap';
 import { UserLogInConsumer } from "../../App";//Context api exported in to pass methods to input and submit elements.
 
@@ -16,7 +17,10 @@ export default function Login(props) {
                 <Container className="center">
                     <Nav />
                     <Row><Col className="pageTitleStyle">Log-in</Col></Row>
-
+                    {props.error &&
+                        <Row><Col className="errorStyle">Incorrect Username or Password</Col></Row>
+                    }
+                    
                     {/*Allow user to input a user name*/}
                     <section>           
                         <Row><Col><InputText updateState= {context.getUserName} inputType="text" text="Type User Name"  /></Col></Row>

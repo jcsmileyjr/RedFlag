@@ -24,6 +24,7 @@ class App extends Component {
       userName:"",//username used in login process
       pwd:"",//password used in login process
       authoration:"",//authoration use in login process and affect flow of data/screens
+      loginError:false,//If login is incorrect, show a error 
       patronName:"",//name of patron use to create a new report
       casino:"",//name of patron use to create a new report
       incidentType:"",//name of patron use to create a new report
@@ -41,10 +42,9 @@ class App extends Component {
         this.setState({currentView: "reports", authoration:login.auth});
       }else{//send agents to initial incident report screen
         this.setState({currentView: "incident", authoration:login.auth});
-      }
-      
+      }      
     }else {
-
+        this.setState({loginError:true});
     }
   }
 
@@ -65,7 +65,7 @@ class App extends Component {
                 getPwd: (value) => this.setState({pwd:value}),
                 logIn: () => this.confirmLogIn(),
                 }}>
-                <Login />
+                <Login error={this.state.loginError} />
               </UserLogInProvider> 
             }
             {this.state.currentView === "incident" && 
@@ -74,7 +74,7 @@ class App extends Component {
                 getCasino: (value) => this.setState({casino:value}),
                 getIncidentType: (value) => this.setState({incidentType:value}),
                 getDate: (value)=> this.setState({incidentDate:value}),
-                logOut:()=> this.setState({currentView:"logIn", patronName:"", casino:"",incidentType:"", incidentDate:"", userName:"", pwd:""}),
+                logOut:()=> this.setState({currentView:"logIn", patronName:"", casino:"",incidentType:"", incidentDate:"", userName:"", pwd:"", loginError:false}),
                 reportIncident:() =>this.initialIncidentReport(),
                 showReports:() => this.setState({currentView: "reports"}),
               }}>
@@ -83,7 +83,7 @@ class App extends Component {
             }
             {this.state.currentView ==="reports" &&
               <ReportState.Provider value={{
-                logOut:()=> this.setState({currentView:"logIn", patronName:"", casino:"",incidentType:"", incidentDate:"", userName:"", pwd:""}),
+                logOut:()=> this.setState({currentView:"logIn", patronName:"", casino:"",incidentType:"", incidentDate:"", userName:"", pwd:"", loginError:false}),
                 newIncident:() => this.setState({currentView: "incident"}),
               }}>
                 <Reports auth = {this.state.authoration} />
