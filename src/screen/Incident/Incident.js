@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './incident.css';
 import {Container, Row, Col, DropdownButton, Dropdown} from 'react-bootstrap';
-import {IncidentReport} from '../../App';
+import {IncidentReport} from '../../App';//Context state transferring shared state and funtionality  
 
 import Nav from '../../components/Nav/Nav';
 import InputText from '../../components/InputText/InputText';

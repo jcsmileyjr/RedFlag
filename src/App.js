@@ -13,7 +13,8 @@ const UserLogIn = React.createContext({});//Context for Login page and elements
 const UserLogInProvider = UserLogIn.Provider;
 export const UserLogInConsumer = UserLogIn.Consumer;
 
-export const IncidentReport = React.createContext({});//Context for incident report page and elements
+export const IncidentReport = React.createContext({});//Context for incident report's page and elements
+export const ReportState = React.createContext({});//Context for report's page and elements
 
 class App extends Component {
   constructor(props){
@@ -71,7 +72,12 @@ class App extends Component {
               </IncidentReport.Provider>
             }
             {this.state.currentView ==="reports" &&
-              <Reports />
+              <ReportState.Provider value={{
+                logOut:()=> this.setState({currentView:"logIn", patronName:"", casino:"",incidentType:"", incidentDate:"", userName:"", pwd:""}),
+                newIncident:() => this.setState({currentView: "incident"}),
+              }}>
+                <Reports />
+              </ReportState.Provider>
             }
           </Row>
         </Container>
