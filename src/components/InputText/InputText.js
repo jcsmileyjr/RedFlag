@@ -4,7 +4,7 @@ import {Container, Row, Col} from 'react-bootstrap';
 
 const InputText = (props) => (
     <Container>
-        <Row><Col><input className="inputStyle" type={props.inputType} onChange={(event)=>{props.updateState(event.target.value)}} /><p></p></Col></Row>
+        <Row><Col><input className="inputStyle" type={props.inputType} placeholder={props.text} onChange={(event)=>{props.updateState(event.target.value)}} /><p></p></Col></Row>
     </Container>      
 );
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import './incident.css';
+import './incident.css';//stylesheet for this component
 import {Container, Row, Col, DropdownButton, Dropdown} from 'react-bootstrap';
-import {IncidentReport} from '../../App';
+import {IncidentReport} from '../../App';//Context state transferring shared state and funtionality  
 
 import Nav from '../../components/Nav/Nav';
 import InputText from '../../components/InputText/InputText';
@@ -12,12 +12,12 @@ import ActionButton from '../../components/ActionButton/ActionButton';
 const casinoNames = ["GoldStrike", "Horseshoe", "1st Jackpot", "Sam's Town", "Hollywood", "Fitz Casino", "Isle of Capri"];
 
 //type of gaming incidents
-const incidentTypes = ["Disputes", "Complaint", "Jackpot", "Crimminal", "Minor Gaming"];
+const incidentTypes = ["Dispute", "Complaint", "Jackpot", "Crimminal", "Minor Gaming"];
 
 //Screen that allows the user to create a initial incident report
 export default function Incident(props) {
-    const [casino, setCasino] = useState("Casino Name");//react hook to update dropdown select casino button title
-    const [type, setType] = useState("Incident Type");//react hook to update dropdown select incident type button title
+    const [casino, setCasino] = useState("Pick a Casino");//react hook to update dropdown select casino button title
+    const [type, setType] = useState("Pick a Incident");//react hook to update dropdown select incident type button title
 
     return(
         <IncidentReport.Consumer>
@@ -30,20 +30,8 @@ export default function Incident(props) {
                     <Row><Col className="pageTitleStyle">Initial Incident Report</Col></Row>
 
                     {/*User will input Patron/Suspect Name */}
-                    <section>
-                        <Row><Col>Patron Name</Col></Row>            
-                        <Row><Col><InputText updateState= {context.getPatronName} inputType="text" /></Col></Row>
-                    </section>
-
-                    {/*User will choose a casino from a dropdown box */}
-                    <section>           
-                        <Row>
-                            <Col>
-                                <DropdownButton size="lg" id="showCasinoNames" title={casino} variant="secondary" >
-                                    {casinoNames.map((name, index) =>(<Dropdown.Item key={index} onClick={()=>{setCasino(name);context.getCasino(name)}}>{name}</Dropdown.Item>))}
-                                </DropdownButton>
-                            </Col>
-                        </Row>
+                    <section>          
+                        <Row><Col><InputText updateState= {context.getPatronName} inputType="text" text="Type Patron Name" /></Col></Row>
                     </section>
 
                     {/*User will choose a incident type from a dropdown box */}
@@ -55,6 +43,17 @@ export default function Incident(props) {
                                 </DropdownButton>
                             </Col>
                         </Row>
+                    </section>                    
+
+                    {/*User will choose a casino from a dropdown box */}
+                    <section>         
+                        <Row>
+                            <Col>
+                                <DropdownButton size="lg" id="showCasinoNames" title={casino} variant="secondary" >
+                                    {casinoNames.map((name, index) =>(<Dropdown.Item key={index} onClick={()=>{setCasino(name);context.getCasino(name)}}>{name}</Dropdown.Item>))}
+                                </DropdownButton>
+                            </Col>
+                        </Row>
                     </section>
 
                     {/*User will pick a date */}
@@ -63,14 +62,17 @@ export default function Incident(props) {
                     </section>
 
                     {/*Submit Button to create incident and transfer user to active cases page */}
-                    <Row><Col><SubmitButton submit={context.reportIncident} /></Col></Row> 
+                    <section>
+                        <Row><Col><SubmitButton submit={context.reportIncident} /></Col></Row> 
+                    </section>                    
 
                     {/*Action buttons, Log out and View Cases */} 
                     <section>
-                    <Row>
-                        <Col><ActionButton buttonColor="danger" title="Log Out" submit={context.logOut} /></Col>
-                        <Col><ActionButton buttonColor="warning" title="View Cases" /></Col>
-                    </Row> 
+                        <ActionButton buttonColor="warning" title="View Cases" submit={context.showReports} />
+                    </section>
+
+                    <section>
+                        <ActionButton buttonColor="danger" title="Log Out" submit={context.logOut} />
                     </section>                                
                 </Container>
             }

@@ -1,0 +1,14 @@
+.reportStyle {
+    box-shadow: 1px 2px 5px 2px rgb(58, 70, 60); /*shadow under the button*/
+    padding-bottom: .5rem;/*add whitespace under the supervisor's Close out button*/
+}
+
+.lineTitle {
+    font-weight: bold;
+    text-indent: 1rem;
+}
+
+.closeOutButtonStyle {
+    margin-top: .5rem;
+    margin-bottom: 2rem;
+}

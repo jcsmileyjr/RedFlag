@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import './App.css';
+import './App.css';//global stylesheet
 import {Container, Row} from 'react-bootstrap';
 
 import Login from "./screen/Login/login.js"; //Login page for all users
 import Incident from "./screen/Incident/Incident";//Incident report form to create a incident.
+import Reports from './screen/Reports/Report';//Report page showing all active incident reports
 import {CheckLogIn} from "./screen/Login/LoginData";//Method use to confirm username and pwd when user logs in
 import {CreateNewIncident} from './screen/Incident/IncidentData';//Method to create a new incident from the Incident form page
 
@@ -12,7 +13,8 @@ const UserLogIn = React.createContext({});//Context for Login page and elements
 const UserLogInProvider = UserLogIn.Provider;
 export const UserLogInConsumer = UserLogIn.Consumer;
 
-export const IncidentReport = React.createContext({});//Context for incident report page and elements
+export const IncidentReport = React.createContext({});//Context for incident report's page and elements
+export const ReportState = React.createContext({});//Context for report's page and elements
 
 class App extends Component {
   constructor(props){
@@ -25,14 +27,16 @@ class App extends Component {
       casino:"",
       incidentType:"",
       incidentDate:"",
+      authoration:"",
     };
   }
 
   //Method to confirm if the user enter username and pwd match a record in the database. If so, go to next screen based on authoration.
   confirmLogIn = () =>{    
     //calls a method from LoginData.js that checks a database against the username and pwd
-    if(CheckLogIn(this.state.userName, this.state.pwd)){
-      this.setState({currentView: "incident"});
+    const login = CheckLogIn(this.state.userName, this.state.pwd);
+    if(login.passFail === true){
+      this.setState({currentView: "incident", authoration:login.auth});
     }else {
 
     }
@@ -40,7 +44,7 @@ class App extends Component {
 
   initialIncidentReport = () =>{
     CreateNewIncident(this.state.patronName,this.state.casino, this.state.incidentType, this.state.incidentDate, this.state.userName);
-    this.setState({currentView:"logIn"});
+    this.setState({currentView:"reports"});
   }
 
   render(){
@@ -64,9 +68,18 @@ class App extends Component {
                 getDate: (value)=> this.setState({incidentDate:value}),
                 logOut:()=> this.setState({currentView:"logIn", patronName:"", casino:"",incidentType:"", incidentDate:"", userName:"", pwd:""}),
                 reportIncident:() =>this.initialIncidentReport(),
+                showReports:() => this.setState({currentView: "reports"}),
               }}>
                 <Incident />
               </IncidentReport.Provider>
+            }
+            {this.state.currentView ==="reports" &&
+              <ReportState.Provider value={{
+                logOut:()=> this.setState({currentView:"logIn", patronName:"", casino:"",incidentType:"", incidentDate:"", userName:"", pwd:""}),
+                newIncident:() => this.setState({currentView: "incident"}),
+              }}>
+                <Reports auth = {this.state.authoration} />
+              </ReportState.Provider>
             }
           </Row>
         </Container>

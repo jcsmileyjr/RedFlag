@@ -18,15 +18,13 @@ export default function Login(props) {
                     <Row><Col className="pageTitleStyle">Log-in</Col></Row>
 
                     {/*Allow user to input a user name*/}
-                    <section>
-                        <Row><Col>User Name</Col></Row>            
-                        <Row><Col><InputText updateState= {context.getUserName} inputType="text"  /></Col></Row>
+                    <section>           
+                        <Row><Col><InputText updateState= {context.getUserName} inputType="text" text="Type User Name"  /></Col></Row>
                     </section>
 
                     {/*Allow user to input a hidden password*/}
                     <section>
-                        <Row><Col>Password</Col></Row>
-                        <Row><Col><InputText updateState= {context.getPwd} inputType="password" /></Col></Row>
+                        <Row><Col><InputText updateState= {context.getPwd} inputType="password" text="Type Password" /></Col></Row>
                     </section>
 
                     <Row><Col><SubmitButton submit={context.logIn}  /></Col></Row>
