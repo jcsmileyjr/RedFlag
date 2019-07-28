@@ -1,5 +1,6 @@
 import React from "react";
-import '../../App.css';
+import '../../App.css';//global stylesheet
+import './report.css';//stylesheet for this component
 import {Container, Row, Col} from 'react-bootstrap';
 import {ReportState} from '../../App';//Context state transferring shared state and funtionality
 import {GetReports} from '../Incident/IncidentData';//Method to get incidents from database
@@ -19,9 +20,9 @@ export default function Reports(props) {
                     <Nav />
 
                     {/*Page Title */}
-                    <Row><Col className="pageTitleStyle">Initial Incident Report</Col></Row>
+                    <Row className="center"><Col className="pageTitleStyle">Initial Incident Report</Col></Row>
                     {reports.map((report, index)=>(
-                        <section key={index}>
+                        <section className="reportStyle" key={index}>
                             <Row><Col>Patron Name: {report.patronName}</Col></Row>
                             <Row><Col>Casino: {report.casinoName}</Col></Row>
                             <Row><Col>Incident Type: {report.incidentType}</Col></Row>
@@ -31,11 +32,11 @@ export default function Reports(props) {
                     }
 
                     {/*Action buttons, Log out and View Cases */} 
-                    <section>
+                    <section className="center">
                         <ActionButton buttonColor="warning" title="New Incident" submit={context.newIncident} />
                     </section>
 
-                    <section>
+                    <section className="center">
                         <ActionButton buttonColor="danger" title="Log Out" submit={context.logOut} />
                     </section>
                     

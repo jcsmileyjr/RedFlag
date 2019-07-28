@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './App.css';
+import './App.css';//global stylesheet
 import {Container, Row} from 'react-bootstrap';
 
 import Login from "./screen/Login/login.js"; //Login page for all users
