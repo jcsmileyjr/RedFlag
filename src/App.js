@@ -37,7 +37,12 @@ class App extends Component {
     //calls a method from LoginData.js that checks a database against the username and pwd
     const login = CheckLogIn(this.state.userName, this.state.pwd);
     if(login.passFail === true){
-      this.setState({currentView: "incident", authoration:login.auth});
+      if(login.auth === "supervisor"){//send supervisors to reports screen
+        this.setState({currentView: "reports", authoration:login.auth});
+      }else{//send agents to initial incident report screen
+        this.setState({currentView: "incident", authoration:login.auth});
+      }
+      
     }else {
 
     }
