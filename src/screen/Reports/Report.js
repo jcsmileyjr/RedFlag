@@ -39,6 +39,12 @@ export default function Reports(props) {
                                 <Col className="lineTitle">Days Remaining:</Col>
                                 <Col>{report.daysRemaining}</Col>
                             </Row>
+
+                            {props.auth === "supervisor" &&
+                                <div className="center">
+                                    <ActionButton className="center" buttonColor="danger" title="Close Out" submit={context.logOut} />                                
+                                </div>
+                            }
                         </section>
                     ))
                     }

@@ -27,14 +27,16 @@ class App extends Component {
       casino:"",
       incidentType:"",
       incidentDate:"",
+      authoration:"",
     };
   }
 
   //Method to confirm if the user enter username and pwd match a record in the database. If so, go to next screen based on authoration.
   confirmLogIn = () =>{    
     //calls a method from LoginData.js that checks a database against the username and pwd
-    if(CheckLogIn(this.state.userName, this.state.pwd)){
-      this.setState({currentView: "incident"});
+    const login = CheckLogIn(this.state.userName, this.state.pwd);
+    if(login.passFail === true){
+      this.setState({currentView: "incident", authoration:login.auth});
     }else {
 
     }
@@ -76,7 +78,7 @@ class App extends Component {
                 logOut:()=> this.setState({currentView:"logIn", patronName:"", casino:"",incidentType:"", incidentDate:"", userName:"", pwd:""}),
                 newIncident:() => this.setState({currentView: "incident"}),
               }}>
-                <Reports />
+                <Reports auth = {this.state.authoration} />
               </ReportState.Provider>
             }
           </Row>

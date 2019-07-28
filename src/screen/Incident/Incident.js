@@ -12,7 +12,7 @@ import ActionButton from '../../components/ActionButton/ActionButton';
 const casinoNames = ["GoldStrike", "Horseshoe", "1st Jackpot", "Sam's Town", "Hollywood", "Fitz Casino", "Isle of Capri"];
 
 //type of gaming incidents
-const incidentTypes = ["Disputes", "Complaint", "Jackpot", "Crimminal", "Minor Gaming"];
+const incidentTypes = ["Dispute", "Complaint", "Jackpot", "Crimminal", "Minor Gaming"];
 
 //Screen that allows the user to create a initial incident report
 export default function Incident(props) {
