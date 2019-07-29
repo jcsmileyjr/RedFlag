@@ -18,8 +18,15 @@ export function CreateNewIncident(patron, casino, incidentType,date ,agent){
 export function GetReports(){
     updateDaysRemaining();//Update the current database remaining days data
     updateColorRepersentingTimeRemaining();//Update the current database color based on days remaining. 
-
+    
+    //sortDataByDaysRemaining(); //WIP WIP WIP WIP
+    //console.table(activeCases);    
     return activeCases;
+}
+
+//sort the reports by days remaining WIP WIP WIP WIP
+function sortDataByDaysRemaining(){
+    activeCases.sort((a, b) => a.daysRemaining - b.daysRemaining);
 }
 
 function updateDaysRemaining(){

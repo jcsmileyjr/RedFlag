@@ -22,22 +22,22 @@ export default function Reports(props) {
                     {/*Page Title */}
                     <Row className="center"><Col className="pageTitleStyle">Initial Incident Report</Col></Row>
                     {reports.map((report, index)=>(
-                        <section className="reportStyle" key={index} style={{backgroundColor:report.color}}>
+                        <section className="reportStyle" key={index} style={{borderLeft:report.color, borderLeftWidth:"50px", borderLeftStyle:"solid"}}>
                             <Row>
-                                <Col className="lineTitle" >Patron Name:</Col>
-                                <Col>{report.patronName}</Col>
+                                <Col xs={{span:5, offset:1}} sm={{span:5, offset:2}} className="lineTitle" >Patron Name:</Col>
+                                <Col xs={4}>{report.patronName}</Col>
                             </Row>
                             <Row>
-                                <Col className="lineTitle">Casino:</Col>
-                                <Col>{report.casinoName}</Col>
+                                <Col xs={{span:5, offset:1}} sm={{span:5, offset:2}} className="lineTitle">Casino:</Col>
+                                <Col xs={4}>{report.casinoName}</Col>
                             </Row>
                             <Row>
-                                <Col className="lineTitle">Incident Type:</Col>
-                                <Col>{report.incidentType}</Col>
+                                <Col xs={{span:5, offset:1}} sm={{span:5, offset:2}} className="lineTitle">Incident Type:</Col>
+                                <Col xs={4}>{report.incidentType}</Col>
                             </Row>
                             <Row>
-                                <Col className="lineTitle">Days Remaining:</Col>
-                                <Col>{report.daysRemaining}</Col>
+                                <Col xs={{span:5, offset:1}} sm={{span:5, offset:2}} className="lineTitle">Days Remaining:</Col>
+                                <Col xs={4}>{report.daysRemaining}</Col>
                             </Row>
 
                             {props.auth === "supervisor" &&
@@ -51,7 +51,7 @@ export default function Reports(props) {
 
                     {/*Action buttons, Log out and View Cases */} 
                     <section className="center">
-                        <ActionButton buttonColor="warning" title="New Incident" submit={context.newIncident} />
+                        <ActionButton buttonColor="success" title="New Incident" submit={context.newIncident} />
                     </section>
 
                     <section className="center">
