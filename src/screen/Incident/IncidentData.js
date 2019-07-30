@@ -24,6 +24,10 @@ export function GetReports(){
     return activeCases;
 }
 
+export function deleteReport(index){
+    activeCases.splice(index,1);
+}
+
 //sort the reports by days remaining WIP WIP WIP WIP
 function sortDataByDaysRemaining(){
     activeCases.sort((a, b) => a.daysRemaining - b.daysRemaining);
