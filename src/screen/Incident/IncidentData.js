@@ -29,9 +29,9 @@ export function deleteReport(index){
 }
 
 //sort the reports by days remaining WIP WIP WIP WIP
-function sortDataByDaysRemaining(){
-    activeCases.sort((a, b) => a.daysRemaining - b.daysRemaining);
-}
+// function sortDataByDaysRemaining(){
+//     activeCases.sort((a, b) => a.daysRemaining - b.daysRemaining);
+// }
 
 function updateDaysRemaining(){
     const todayDate = new Date();//Get today's date
