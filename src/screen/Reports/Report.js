@@ -8,8 +8,6 @@ import {GetReports} from '../Incident/IncidentData';//Method to get incidents fr
 import Nav from '../../components/Nav/Nav';
 import ActionButton from '../../components/ActionButton/ActionButton';
 
-
-
 export default function Reports(props) {
     const reports = GetReports();
     return(
@@ -42,7 +40,7 @@ export default function Reports(props) {
 
                             {props.auth === "supervisor" &&
                                 <div className="center">
-                                    <ActionButton className="center" buttonColor="danger" title="Close Out" submit={context.logOut} />                                
+                                    <ActionButton className="center" buttonColor="danger" title="Close Out" submit={context.closeReport} />                                
                                 </div>
                             }
                         </section>

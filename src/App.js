@@ -5,8 +5,10 @@ import {Container, Row} from 'react-bootstrap';
 import Login from "./screen/Login/login.js"; //Login page for all users
 import Incident from "./screen/Incident/Incident";//Incident report form to create a incident.
 import Reports from './screen/Reports/Report';//Report page showing all active incident reports
+
 import {CheckLogIn} from "./screen/Login/LoginData";//Method use to confirm username and pwd when user logs in
 import {CreateNewIncident} from './screen/Incident/IncidentData';//Method to create a new incident from the Incident form page
+import {deleteReport} from './screen/Incident/IncidentData'; //Method to remove incidents from the database
 
 //notes from https://hackernoon.com/how-do-i-use-react-context-3eeb879169a2 on how to use React's Context
 const UserLogIn = React.createContext({});//Context for Login screen and elements
@@ -48,10 +50,16 @@ class App extends Component {
     }
   }
 
-  //Method passed to the incident report page with React Context to create a new incident and 
+  //Method passed to the incident report screen with React Context to create a new incident and 
   //move the user to the reports screen.
   initialIncidentReport = () =>{
     CreateNewIncident(this.state.patronName,this.state.casino, this.state.incidentType, this.state.incidentDate, this.state.userName);
+    this.setState({currentView:"reports"});
+  }
+
+  //method used on the reports screen to delete a incident report
+  closeReport = (index)=>{
+    deleteReport(index);
     this.setState({currentView:"reports"});
   }
 
@@ -85,6 +93,7 @@ class App extends Component {
               <ReportState.Provider value={{
                 logOut:()=> this.setState({currentView:"logIn", patronName:"", casino:"",incidentType:"", incidentDate:"", userName:"", pwd:"", loginError:false}),
                 newIncident:() => this.setState({currentView: "incident"}),
+                closeReport: (number)=> this.closeReport(number),
               }}>
                 <Reports auth = {this.state.authoration} />
               </ReportState.Provider>
