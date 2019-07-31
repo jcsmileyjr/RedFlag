@@ -1,8 +1,11 @@
-{"reports":[
-    {"agentName":"Newbie",
-    "patronNafme":"King Kong",
-    "casinoName":"GoldStrike",
-    "incidentType":"crimminal",
-    "incidentDate":"07/15/2019"
+{
+  "reports": [
+    {
+      "agentName": "Newbie",
+      "patronNafme": "King Kong",
+      "casinoName": "GoldStrike",
+      "incidentType": "crimminal",
+      "incidentDate": "07/15/2019"
     }
-]}
+  ]
+}
