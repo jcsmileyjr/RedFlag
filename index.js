@@ -26,7 +26,6 @@ app.post("/cred", function(req, res){
   
   info.passFail = false;
 
-  console.log(userName + " : " + pwd);
   creds.forEach( account => {
     if(account.username === userName && account.pwd === pwd){
       info.username = account.username;
