@@ -8,6 +8,7 @@ import Reports from './screen/Reports/Report';//Report page showing all active i
 
 import {CreateNewIncident} from './screen/Incident/IncidentData';//Method to create a new incident from the Incident form page
 import {deleteReport} from './screen/Incident/IncidentData'; //Method to remove incidents from the database
+import {updateActiveCasesUponLogin} from './screen/Incident/IncidentData';//Method to get most up to date array of cases to update acticecases array in the IncidentData.js
 
 //notes from https://hackernoon.com/how-do-i-use-react-context-3eeb879169a2 on how to use React's Context
 const UserLogIn = React.createContext({});//Context for Login screen and elements
@@ -33,20 +34,25 @@ class App extends Component {
     };
   }
 
-  //Method to confirm if the user enter username and pwd match a record in the database. 
+  //Method to confirm if the user enter a correct username and pwd match a record in the database. 
   //If so, go to next screen based on authoration.
+  //Use as a callback in the isLogIn() method (makes a fetch call to the server)
   confirmLogIn = (login) =>{    
     if(login.passFail === true){
+      updateActiveCasesUponLogin(login.reports);//update local activecases array of reports with copy from server
       if(login.auth === "supervisor"){//send supervisors to reports screen
         this.setState({currentView: "reports", authoration:login.auth});
       }else{//send agents to initial incident report screen
         this.setState({currentView: "incident", authoration:login.auth});
       }      
+      
     }else {
         this.setState({loginError:true});
     }
   }
 
+  //Use a fetch method to make a http post request to the server
+  //If successfull, return the true, the user auth level, and a database of saved cases
   isLogIn = (callback) => {
     var info = {"name": this.state.userName, "password":this.state.pwd};
     fetch('/cred', {method:"POST", body:JSON.stringify(info), headers:{'Content-Type':'application/json'}})

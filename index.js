@@ -31,6 +31,7 @@ app.post("/cred", function(req, res){
       info.username = account.username;
       info.auth = account.auth;
       info.passFail = true;
+      info.reports = incidents;
     }
   });
 
