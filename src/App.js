@@ -45,7 +45,6 @@ class App extends Component {
       }else{//send agents to initial incident report screen
         this.setState({currentView: "incident", authoration:login.auth});
       }      
-      
     }else {
         this.setState({loginError:true});
     }
@@ -55,7 +54,7 @@ class App extends Component {
   //If successfull, return the true, the user auth level, and a database of saved cases
   isLogIn = (callback) => {
     var info = {"name": this.state.userName, "password":this.state.pwd};
-    fetch('/cred', {method:"POST", body:JSON.stringify(info), headers:{'Content-Type':'application/json'}})
+    fetch('/login', {method:"POST", body:JSON.stringify(info), headers:{'Content-Type':'application/json'}})
       .then(function(response){
         return response.json();
       })
@@ -64,10 +63,22 @@ class App extends Component {
       })
   }
 
+  //TASK: ADD CODE FOR UNSUCCESSFUL UPDATES (this updates the client but could fail to update the server)
   //Method passed to the incident report screen with React Context to create a new incident and 
-  //move the user to the reports screen.
+  //move the user to the reports screen. The new incident is updated to the server and local array for presentation
   initialIncidentReport = () =>{
-    CreateNewIncident(this.state.patronName,this.state.casino, this.state.incidentType, this.state.incidentDate, this.state.userName);
+    var newIncident = CreateNewIncident(this.state.patronName,this.state.casino, this.state.incidentType, this.state.incidentDate, this.state.userName);
+
+    var info = {"name": this.state.userName, "password":this.state.pwd, "newIncident":newIncident};
+    
+    fetch('/newReport', {method:"PUT", body:JSON.stringify(info), headers:{'Content-Type':'application/json'}})
+    .then(function(response){
+      return response.json();
+    })
+    .catch(function(err){
+      console.log(err);
+    });    
+
     this.setState({currentView:"reports"});
   }
 

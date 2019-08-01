@@ -1,7 +1,7 @@
 
 let activeCases = [];//array of cases assigned for current logged in agent or agent selected by a supervisor
 
-//Method to create a initial incident report object. 
+//Method to create a initial incident report object and update the server
 export function CreateNewIncident(patron, casino, incidentType,date ,agent){
     var newCase = {};//blank object use to create a incident report
     newCase.agentName = agent;//add the case agent to the object
@@ -11,12 +11,16 @@ export function CreateNewIncident(patron, casino, incidentType,date ,agent){
     newCase.incidentDate = date;//add the start date
 
     activeCases.push(newCase);//add the new incident type to the array of cases
+    
+    return newCase;
 }
 
 //Upon login, get the data from the server and the local reports, activeCases array
 export function updateActiveCasesUponLogin(data){
     activeCases = data.reports;
 }
+
+
 
 //Method call in the Reports.js to get all active incidents reported and calculate days remaining to 
 //finish case file
