@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 var incidents = require("./src/incidents.json");
 var creds = require("./src/credentials.json");
 
+//TESTING ONLY
 app.get("/incidents", function(req, res) {
   res.json(creds);
   res.end();
@@ -23,18 +24,34 @@ function getAgentCases(name) {
   var cases = {};
   cases.reports = []; //recreate the incidents database schema
   incidents.reports.forEach(report => {
-    if (report.agentName === name) {//checks if the log-in agent name matches the agentName property in the record
+    if (report.agentName === name) {
+      //checks if the log-in agent name matches the agentName property in the record
       cases.reports.push(report);
     }
   });
   return cases;
 }
 
-app.post("/cred", function(req, res) {
+//TASK: ADD CODE FOR UNSUCCESSFUL UPDATE//
+//Route to update the current active incidents from a client
+app.put("/newReport", function(req, res) {
+  var userName = req.body.name;
+  var pwd = req.body.password;
+  var newReport = req.body.newIncident;
+
+  creds.forEach(account => {
+    if (account.username === userName && account.pwd === pwd) {
+      incidents.reports.push(newReport);
+    }
+  });
+});
+
+//route to allow a user to login and get authorization level and array of current incident reports
+//A user's user-name and password is sent from the client to the server.
+app.post("/login", function(req, res) {
   var userName = req.body.name;
   var pwd = req.body.password;
   var info = {};
-
   info.passFail = false;
 
   //Firt checks if the username and password is in the cedentials.json
