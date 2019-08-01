@@ -3,14 +3,19 @@ let activeCases = [];//array of cases assigned for current logged in agent or ag
 
 //Method to create a initial incident report object. 
 export function CreateNewIncident(patron, casino, incidentType,date ,agent){
-    var newCase = {};//blank object
+    var newCase = {};//blank object use to create a incident report
     newCase.agentName = agent;//add the case agent to the object
     newCase.patronName = patron;//add the patron/suspect to the object
     newCase.casinoName = casino;//add the place/casino of the incident
     newCase.incidentType = incidentType;//add the type of incident
-    newCase.incidentDate = date;
+    newCase.incidentDate = date;//add the start date
 
     activeCases.push(newCase);//add the new incident type to the array of cases
+}
+
+//Upon login, get the data from the server and the local reports, activeCases array
+export function updateActiveCasesUponLogin(data){
+    activeCases = data.reports;
 }
 
 //Method call in the Reports.js to get all active incidents reported and calculate days remaining to 
@@ -20,19 +25,21 @@ export function GetReports(){
     updateColorRepersentingTimeRemaining();//Update the current database color based on days remaining. 
     
     //sortDataByDaysRemaining(); //WIP WIP WIP WIP
-    //console.table(activeCases);    
+    //console.table(activeCases);//WIP WIP WIP WIP    
     return activeCases;
 }
 
+//Use by a supervisor to close out/delete a agent's report
 export function deleteReport(index){
     activeCases.splice(index,1);
 }
 
 //sort the reports by days remaining WIP WIP WIP WIP
-function sortDataByDaysRemaining(){
-    activeCases.sort((a, b) => a.daysRemaining - b.daysRemaining);
-}
+// function sortDataByDaysRemaining(){
+//     activeCases.sort((a, b) => a.daysRemaining - b.daysRemaining);
+// }
 
+//Use to prep the incident reports. Add a days remaining property to the report based on the initial start day
 function updateDaysRemaining(){
     const todayDate = new Date();//Get today's date
 
