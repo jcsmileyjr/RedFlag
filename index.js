@@ -23,14 +23,36 @@ app.get("/incidents", function(req, res) {
 function getAgentCases(name) {
   var cases = {};
   cases.reports = []; //recreate the incidents database schema
+
+  //checks if the log-in agent name matches the agentName property in the record
   incidents.reports.forEach(report => {
     if (report.agentName === name) {
-      //checks if the log-in agent name matches the agentName property in the record
       cases.reports.push(report);
     }
   });
   return cases;
 }
+
+//Route to delete a report in the server from the client
+//First check if username and password is correct, then search for database of incidents for id
+//if found, delete it. 
+app.put("/deleteReport", function(req, res) {
+  var userName = req.body.name;
+  var pwd = req.body.password;
+  var newReport = req.body.newIncident;//incident to be deleted
+  
+  creds.forEach(account => {
+    if (account.username === userName && account.pwd === pwd) {
+      incidents.reports.forEach((report,index) =>{
+        if(report.id === newReport.id){  
+          incidents.reports.splice(index,1);        
+        }
+      });
+    }
+  });
+
+  res.end();
+});
 
 //TASK: ADD CODE FOR UNSUCCESSFUL UPDATE//
 //Route to update the current active incidents from a client
@@ -38,12 +60,16 @@ app.put("/newReport", function(req, res) {
   var userName = req.body.name;
   var pwd = req.body.password;
   var newReport = req.body.newIncident;
+  var numberOfReports = incidents.reports.length;
+  newReport.id = numberOfReports + 1;
 
   creds.forEach(account => {
     if (account.username === userName && account.pwd === pwd) {
       incidents.reports.push(newReport);
     }
   });
+
+  res.end();
 });
 
 //route to allow a user to login and get authorization level and array of current incident reports

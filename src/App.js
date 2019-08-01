@@ -71,21 +71,20 @@ class App extends Component {
 
     var info = {"name": this.state.userName, "password":this.state.pwd, "newIncident":newIncident};
     
-    fetch('/newReport', {method:"PUT", body:JSON.stringify(info), headers:{'Content-Type':'application/json'}})
-    .then(function(response){
-      return response.json();
-    })
-    .catch(function(err){
-      console.log(err);
-    });    
+    fetch('/newReport', {method:"PUT", body:JSON.stringify(info), headers:{'Content-Type':'application/json'}});   
 
     this.setState({currentView:"reports"});
   }
 
   //method used on the reports screen to delete a incident report
+  //And redirect to the same view to force a update of the data
   closeReport = (index)=>{
-    deleteReport(index);
+    var newIncident = deleteReport(index);
     this.setState({currentView:"reports"});
+
+    var info = {"name": this.state.userName, "password":this.state.pwd, "newIncident":newIncident};
+    
+    fetch('/deleteReport', {method:"PUT", body:JSON.stringify(info), headers:{'Content-Type':'application/json'}});
   }
 
   render(){

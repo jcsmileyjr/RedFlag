@@ -20,8 +20,6 @@ export function updateActiveCasesUponLogin(data){
     activeCases = data.reports;
 }
 
-
-
 //Method call in the Reports.js to get all active incidents reported and calculate days remaining to 
 //finish case file
 export function GetReports(){
@@ -34,8 +32,12 @@ export function GetReports(){
 }
 
 //Use by a supervisor to close out/delete a agent's report
-export function deleteReport(index){
+export function deleteReport(index){    
+    let incident = activeCases[index];
     activeCases.splice(index,1);
+    return incident;
+
+     
 }
 
 //sort the reports by days remaining WIP WIP WIP WIP
