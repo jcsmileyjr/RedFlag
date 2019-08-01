@@ -24,14 +24,3 @@
    //console.log("End of line " + passFail.passFail);
     //return passFail.passFail;
   }
-
-  export function isLogIn(name, password, callback){
-    var info = {"name": name, "password":password};
-    fetch('/cred', {method:"POST", body:JSON.stringify(info), headers:{'Content-Type':'application/json'}})
-      .then(function(response){
-        return response.json();
-      })
-      .then(function(data){
-        callback(data);
-      })
-  }

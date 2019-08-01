@@ -23,8 +23,7 @@ function getAgentCases(name) {
   var cases = {};
   cases.reports = []; //recreate the incidents database schema
   incidents.reports.forEach(report => {
-    if (report.agentName === name) {
-      //checks if the log-in agent name matches the agentName property in the record
+    if (report.agentName === name) {//checks if the log-in agent name matches the agentName property in the record
       cases.reports.push(report);
     }
   });
@@ -68,5 +67,3 @@ app.get("/", (req, res) => {
 
 const port = process.env.PORT || 5000;
 app.listen(port);
-
-console.log(`Listening on ${port}`);
