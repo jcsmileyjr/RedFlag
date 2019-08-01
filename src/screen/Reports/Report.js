@@ -40,7 +40,7 @@ export default function Reports(props) {
 
                             {props.auth === "supervisor" &&
                                 <div className="center">
-                                    <ActionButton className="center" buttonColor="danger" title="Close Out" submit={context.closeReport} />                                
+                                    <ActionButton className="center" buttonColor="danger" title="Close Out" submit={()=>{context.closeReport(index)}} />                                
                                 </div>
                             }
                         </section>
