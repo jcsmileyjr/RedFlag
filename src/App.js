@@ -27,6 +27,7 @@ class App extends Component {
       pwd:"",//password used in login process
       authoration:"",//authoration use in login process and affect flow of data/screens
       loginError:false,//If login is incorrect, show a error 
+      incidentError:"",
       patronName:"",//name of patron use to create a new report
       casino:"",//name of patron use to create a new report
       incidentType:"",//name of patron use to create a new report
@@ -67,13 +68,21 @@ class App extends Component {
   //Method passed to the incident report screen with React Context to create a new incident and 
   //move the user to the reports screen. The new incident is updated to the server and local array for presentation
   initialIncidentReport = () =>{
-    var newIncident = CreateNewIncident(this.state.patronName,this.state.casino, this.state.incidentType, this.state.incidentDate, this.state.userName);
+    if(this.state.patronName===""){
+      console.log("bad name");
+      this.setState({currentView:"incident", incidentError:"patronName"});
+    }else if(isNaN(this.state.incidentDate)=== false || this.state.incidentDate===""){
+      console.log("bad date is " + this.state.incidentDate);
+      this.setState({currentView:"incident", incidentError:"date"});
+    }else{
+      var newIncident = CreateNewIncident(this.state.patronName,this.state.casino, this.state.incidentType, this.state.incidentDate, this.state.userName);
 
-    var info = {"name": this.state.userName, "password":this.state.pwd, "newIncident":newIncident};
-    
-    fetch('/newReport', {method:"PUT", body:JSON.stringify(info), headers:{'Content-Type':'application/json'}});   
+      var info = {"name": this.state.userName, "password":this.state.pwd, "newIncident":newIncident};
+      
+      fetch('/newReport', {method:"PUT", body:JSON.stringify(info), headers:{'Content-Type':'application/json'}});   
 
-    this.setState({currentView:"reports"});
+      this.setState({currentView:"reports"});
+    }
   }
 
   //method used on the reports screen to delete a incident report
@@ -110,7 +119,7 @@ class App extends Component {
                 reportIncident:() =>this.initialIncidentReport(),
                 showReports:() => this.setState({currentView: "reports"}),
               }}>
-                <Incident />
+                <Incident formError={this.state.incidentError} />
               </IncidentReport.Provider>
             }
             {this.state.currentView ==="reports" &&

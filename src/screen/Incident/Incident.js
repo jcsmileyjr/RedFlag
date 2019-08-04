@@ -32,7 +32,10 @@ export default function Incident(props) {
                     {/*User will input Patron/Suspect Name */}
                     <section>          
                         <Row><Col><InputText updateState= {context.getPatronName} inputType="text" text="Type Patron Name" /></Col></Row>
-                    </section>
+                        {props.formError==="patronName" &&
+                            <Row className="error"><Col>Error, Please ensure patron name isn't empty</Col></Row>
+                        }                         
+                    </section>                   
 
                     {/*User will choose a incident type from a dropdown box */}
                     <section>           
@@ -59,7 +62,10 @@ export default function Incident(props) {
                     {/*User will pick a date */}
                     <section>           
                         <Row><Col><InputText updateState= {context.getDate} inputType="date" /></Col></Row>
-                    </section>
+                        {props.formError==="date" &&
+                            <Row className="error"><Col>Error, incorrect date</Col></Row>
+                        }                         
+                    </section>                   
 
                     {/*Submit Button to create incident and transfer user to active cases page */}
                     <section>

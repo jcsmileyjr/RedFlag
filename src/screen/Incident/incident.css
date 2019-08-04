@@ -8,3 +8,7 @@ button {
 .btn-secondary {
     background-color: whitesmoke !important;
 }
+
+.error {
+    color: red;
+}
