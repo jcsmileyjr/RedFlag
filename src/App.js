@@ -68,12 +68,16 @@ class App extends Component {
   //Method passed to the incident report screen with React Context to create a new incident and 
   //move the user to the reports screen. The new incident is updated to the server and local array for presentation
   initialIncidentReport = () =>{
-    if(this.state.patronName===""){
-      console.log("bad name");
+    //Validation check for the inputted patron name and date.
+    const testPattern = /[^a-zA-Z. ]/;//ensure only letters, periods, and spaces
+    if(this.state.patronName==="" || testPattern.test(this.state.patronName)){
       this.setState({currentView:"incident", incidentError:"patronName"});
     }else if(isNaN(this.state.incidentDate)=== false || this.state.incidentDate===""){
-      console.log("bad date is " + this.state.incidentDate);
       this.setState({currentView:"incident", incidentError:"date"});
+    }else if(this.state.casino ===""){
+      this.setState({currentView:"incident", incidentError:"casino"});
+    }else if(this.state.incidentType === ""){
+      this.setState({currentView:"incident", incidentError:"type"});
     }else{
       var newIncident = CreateNewIncident(this.state.patronName,this.state.casino, this.state.incidentType, this.state.incidentDate, this.state.userName);
 

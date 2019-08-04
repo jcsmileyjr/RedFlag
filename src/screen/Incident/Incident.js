@@ -46,6 +46,9 @@ export default function Incident(props) {
                                 </DropdownButton>
                             </Col>
                         </Row>
+                        {props.formError==="type" &&
+                            <Row className="error"><Col>Error, Please choose a incident type</Col></Row>
+                        }                        
                     </section>                    
 
                     {/*User will choose a casino from a dropdown box */}
@@ -57,6 +60,9 @@ export default function Incident(props) {
                                 </DropdownButton>
                             </Col>
                         </Row>
+                        {props.formError==="casino" &&
+                            <Row className="error"><Col>Error, Please choose a casino</Col></Row>
+                        }                        
                     </section>
 
                     {/*User will pick a date */}
