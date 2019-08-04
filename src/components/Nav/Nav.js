@@ -13,6 +13,7 @@ const Nav = (props) => (
 
         {props.menu &&
             <Row className="menu">
+                <Col xs={12}>Number of Cases: {props.countOfCases}</Col>
                 <Col className="legendTitlePlenty" xs={4}>Green</Col>
                 <Col className="legendTitleAlmost" xs={4}>Yellow</Col>
                 <Col className="legendTitleOut" xs={4}>Red</Col>
