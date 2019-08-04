@@ -24,7 +24,7 @@ export default function Incident(props) {
             {context => 
                 <Container className="center">
                     {/*Nav Bar */}
-                    <Nav />
+                    <Nav menu={false} />
 
                     {/*Page Title */}
                     <Row><Col className="pageTitleStyle"> Create an Incident Report</Col></Row>

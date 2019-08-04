@@ -14,11 +14,11 @@ export default function Reports(props) {
         <ReportState.Consumer>
             {context => 
                 <Container>
-                    {/*Nav Bar */}
-                    <Nav />
-
                     {/*Page Title */}
                     <Row className="center"><Col className="pageTitleStyle">View Initial Incident Reports</Col></Row>
+                    {/*Nav Bar */}
+                    <Nav menu={true} />                    
+                    
                     {reports.map((report, index)=>(
                         <section className="reportStyle" key={index} style={{borderLeft:report.color, borderLeftWidth:"50px", borderLeftStyle:"solid"}}>
                             <Row>

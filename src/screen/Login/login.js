@@ -16,7 +16,7 @@ export default function Login(props) {
         <UserLogInConsumer>
             {context => 
                 <Container className="center">
-                    <Nav />
+                    <Nav menu={false} />
                     <Row><Col className="pageTitleStyle">Log-in</Col></Row>
                     {props.error &&
                         <Row><Col className="errorStyle">Incorrect Username or Password</Col></Row>
