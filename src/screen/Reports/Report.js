@@ -18,7 +18,7 @@ export default function Reports(props) {
                     <Nav />
 
                     {/*Page Title */}
-                    <Row className="center"><Col className="pageTitleStyle">Initial Incident Report</Col></Row>
+                    <Row className="center"><Col className="pageTitleStyle">View Initial Incident Reports</Col></Row>
                     {reports.map((report, index)=>(
                         <section className="reportStyle" key={index} style={{borderLeft:report.color, borderLeftWidth:"50px", borderLeftStyle:"solid"}}>
                             <Row>
