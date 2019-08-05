@@ -41,6 +41,9 @@ class App extends Component {
   confirmLogIn = (login) =>{    
     if(login.passFail === true){
       updateActiveCasesUponLogin(login.reports);//update local activecases array of reports with copy from server
+      
+      //WIP WIP WIP How to get login.agents to incident page to populate dropdown box WIP WIP WIP
+      
       if(login.auth === "supervisor"){//send supervisors to reports screen
         this.setState({currentView: "reports", authoration:login.auth, loginError:false});
       }else{//send agents to initial incident report screen
@@ -123,7 +126,7 @@ class App extends Component {
                 reportIncident:() =>this.initialIncidentReport(),
                 showReports:() => this.setState({currentView: "reports"}),
               }}>
-                <Incident formError={this.state.incidentError} />
+                <Incident auth = {this.state.authoration} formError={this.state.incidentError} />
               </IncidentReport.Provider>
             }
             {this.state.currentView ==="reports" &&

@@ -71,7 +71,19 @@ export default function Incident(props) {
                         {props.formError==="date" &&
                             <Row className="error"><Col>Error, incorrect date</Col></Row>
                         }                         
-                    </section>                   
+                    </section>   
+
+                    {props.auth === "supervisor" &&
+                        <section>
+                        <Row>
+                            <Col>
+                                <DropdownButton size="lg" id="showCasinoNames" title={casino} variant="secondary" >
+                                    {casinoNames.map((name, index) =>(<Dropdown.Item key={index} onClick={()=>{setCasino(name);context.getCasino(name)}}>{name}</Dropdown.Item>))}
+                                </DropdownButton>
+                            </Col>
+                        </Row>
+                        </section>
+                    }                                    
 
                     {/*Submit Button to create incident and transfer user to active cases page */}
                     <section>
