@@ -24,8 +24,7 @@ export function updateActiveCasesUponLogin(data){
 //finish case file
 export function GetReports(){
     updateDaysRemaining();//Update the current database remaining days data
-    updateColorRepersentingTimeRemaining();//Update the current database color based on days remaining. 
-    
+    updateColorRepersentingTimeRemaining();//Update the current database color based on days remaining.    
     sortDataByDaysRemaining(); //Sort the data from red to green color coded incidents incident 
     return activeCases;
 }
@@ -40,7 +39,6 @@ export function deleteReport(index){
 //sort the reports by days remaining WIP WIP WIP WIP
  function sortDataByDaysRemaining(){
      activeCases.sort((a, b) =>a.daysRemaining - b.daysRemaining);
-     console.table(activeCases);
  }
 
 //Use to prep the incident reports. Add a days remaining property to the report based on the initial start day
