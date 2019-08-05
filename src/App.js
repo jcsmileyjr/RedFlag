@@ -42,9 +42,9 @@ class App extends Component {
     if(login.passFail === true){
       updateActiveCasesUponLogin(login.reports);//update local activecases array of reports with copy from server
       if(login.auth === "supervisor"){//send supervisors to reports screen
-        this.setState({currentView: "reports", authoration:login.auth});
+        this.setState({currentView: "reports", authoration:login.auth, loginError:false});
       }else{//send agents to initial incident report screen
-        this.setState({currentView: "incident", authoration:login.auth});
+        this.setState({currentView: "incident", authoration:login.auth, loginError:false});
       }      
     }else {
         this.setState({loginError:true});
@@ -85,7 +85,7 @@ class App extends Component {
       
       fetch('/newReport', {method:"PUT", body:JSON.stringify(info), headers:{'Content-Type':'application/json'}});   
 
-      this.setState({currentView:"reports"});
+      this.setState({currentView:"reports", incidentError:""});
     }
   }
 
