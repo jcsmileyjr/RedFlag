@@ -85,7 +85,7 @@ class App extends Component {
       
       fetch('/newReport', {method:"PUT", body:JSON.stringify(info), headers:{'Content-Type':'application/json'}});   
 
-      this.setState({currentView:"reports", incidentError:""});
+      this.setState({currentView:"reports", incidentError:"", patronName:"", casino:"", incidentDate:"", incidentType:""});
     }
   }
 
