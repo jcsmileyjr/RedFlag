@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './incident.css';//stylesheet for this component
 import {Container, Row, Col, DropdownButton, Dropdown} from 'react-bootstrap';
 import {IncidentReport} from '../../App';//Context state transferring shared state and funtionality  
+import {getListOfAgents} from './IncidentData';
 
 import Nav from '../../components/Nav/Nav';
 import InputText from '../../components/InputText/InputText';
@@ -18,7 +19,9 @@ const incidentTypes = ["Dispute", "Complaint", "Jackpot", "Criminal", "Minor Gam
 export default function Incident(props) {
     const [casino, setCasino] = useState("Pick a Casino");//react hook to update dropdown select casino button title
     const [type, setType] = useState("Pick an Incident");//react hook to update dropdown select incident type button title
+    const [agent, setAgent] = useState("Pick an Agent");//react hook to update dropdown select incident agent button title
 
+    const agents = getListOfAgents();
     return(
         <IncidentReport.Consumer>
             {context => 
@@ -77,8 +80,8 @@ export default function Incident(props) {
                         <section>
                         <Row>
                             <Col>
-                                <DropdownButton size="lg" id="showCasinoNames" title={casino} variant="secondary" >
-                                    {casinoNames.map((name, index) =>(<Dropdown.Item key={index} onClick={()=>{setCasino(name);context.getCasino(name)}}>{name}</Dropdown.Item>))}
+                                <DropdownButton size="lg" id="showAgentNames" title={agent} variant="secondary" >
+                                    {agents.map((agent, index) =>(<Dropdown.Item key={index} onClick={()=>{setAgent(agent);context.getAgent(agent)}}>{agent}</Dropdown.Item>))}
                                 </DropdownButton>
                             </Col>
                         </Row>

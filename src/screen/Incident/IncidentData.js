@@ -1,5 +1,16 @@
 
-let activeCases = [];//array of cases assigned for current logged in agent or agent selected by a supervisor
+let activeCases = [];//array of cases assigned for current logged in agent or all agent selected by a supervisor
+let listOfAgents = [];//array of all agents names to be used by a supervisor's in creating a incident
+
+//Method to update listOfAgent with a list of agent's name
+export function updateListOfAgents(list){
+    listOfAgents = list;
+}
+
+//Method to get the current list of agent names to update drop down box on the Incident form. 
+export function getListOfAgents(){
+    return listOfAgents;
+}
 
 //Method to create a initial incident report object and update the server
 export function CreateNewIncident(patron, casino, incidentType,date ,agent){
