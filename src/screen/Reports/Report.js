@@ -14,13 +14,13 @@ export default function Reports(props) {
         <ReportState.Consumer>
             {context => 
                 <Container>
-                    {/*Nav Bar */}
-                    <Nav />
-
                     {/*Page Title */}
-                    <Row className="center"><Col className="pageTitleStyle">Initial Incident Report</Col></Row>
+                    <Row className="center"><Col className="pageTitleStyle">View Initial Incident Reports</Col></Row>
+                    {/*Nav Bar */}
+                    <Nav menu={true} countOfCases = {reports.length}/>                    
+                    {/*className={`playArea ${props.bgColor}`}|||| animation: fadein 2s */}
                     {reports.map((report, index)=>(
-                        <section className="reportStyle" key={index} style={{borderLeft:report.color, borderLeftWidth:"50px", borderLeftStyle:"solid"}}>
+                        <section className="reportStyle fadeReportsIn" key={index} style={{borderLeft:report.color, borderLeftWidth:"50px", borderLeftStyle:"solid"}}>
                             <Row>
                                 <Col xs={{span:5, offset:1}} sm={{span:5, offset:2}} className="lineTitle" >Patron Name:</Col>
                                 <Col xs={4}>{report.patronName}</Col>

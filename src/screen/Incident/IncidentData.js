@@ -1,5 +1,16 @@
 
-let activeCases = [];//array of cases assigned for current logged in agent or agent selected by a supervisor
+let activeCases = [];//array of cases assigned for current logged in agent or all agent selected by a supervisor
+let listOfAgents = [];//array of all agents names to be used by a supervisor's in creating a incident
+
+//Method to update listOfAgent with a list of agent's name
+export function updateListOfAgents(list){
+    listOfAgents = list;
+}
+
+//Method to get the current list of agent names to update drop down box on the Incident form. 
+export function getListOfAgents(){
+    return listOfAgents;
+}
 
 //Method to create a initial incident report object and update the server
 export function CreateNewIncident(patron, casino, incidentType,date ,agent){
@@ -24,10 +35,8 @@ export function updateActiveCasesUponLogin(data){
 //finish case file
 export function GetReports(){
     updateDaysRemaining();//Update the current database remaining days data
-    updateColorRepersentingTimeRemaining();//Update the current database color based on days remaining. 
-    
-    //sortDataByDaysRemaining(); //WIP WIP WIP WIP
-    //console.table(activeCases);//WIP WIP WIP WIP    
+    updateColorRepersentingTimeRemaining();//Update the current database color based on days remaining.    
+    sortDataByDaysRemaining(); //Sort the data from red to green color coded incidents incident 
     return activeCases;
 }
 
@@ -35,15 +44,13 @@ export function GetReports(){
 export function deleteReport(index){    
     let incident = activeCases[index];
     activeCases.splice(index,1);
-    return incident;
-
-     
+    return incident;     
 }
 
 //sort the reports by days remaining WIP WIP WIP WIP
-// function sortDataByDaysRemaining(){
-//     activeCases.sort((a, b) => a.daysRemaining - b.daysRemaining);
-// }
+ function sortDataByDaysRemaining(){
+     activeCases.sort((a, b) =>a.daysRemaining - b.daysRemaining);
+ }
 
 //Use to prep the incident reports. Add a days remaining property to the report based on the initial start day
 function updateDaysRemaining(){

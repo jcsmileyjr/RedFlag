@@ -13,11 +13,17 @@ app.use(bodyParser.json());
 var incidents = require("./src/incidents.json");
 var creds = require("./src/credentials.json");
 
-//TESTING ONLY
-app.get("/incidents", function(req, res) {
-  res.json(creds);
-  res.end();
-});
+//return list of agents names to send to supvisors
+function getListOfAgents(){
+  var listOfAgents = [];//array of agents names
+  creds.forEach((agent)=>{
+    if(agent.auth === "agent"){
+      listOfAgents.push(agent.username);
+    }
+  });
+
+  return listOfAgents;
+}
 
 //Sort through array of saved cases for cases specific to a authorize agent and return those cases
 function getAgentCases(name) {
@@ -89,8 +95,8 @@ app.post("/login", function(req, res) {
       info.auth = account.auth;
       info.passFail = true;
       if (account.auth === "supervisor") {
-        info.reports = incidents;
-        getAgentCases(account.username);
+        info.reports = incidents;//return all incident reports
+        info.agents = getListOfAgents();//return list of all frontline agents
       } else {
         info.reports = getAgentCases(account.username);
       }

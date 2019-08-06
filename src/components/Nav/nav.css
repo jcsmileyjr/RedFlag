@@ -7,3 +7,37 @@
     color: red;
 }
 
+.menu {
+    font-size: .65rem;
+}
+
+.legendTitlePlenty {
+    background-color: #D0FCCD; 
+    border-left: .5px solid grey;
+    border-top: .5px solid grey;
+ }
+
+.legendTitleAlmost {
+   background-color: #FBF2A8;
+   border-top: .5px solid grey; 
+   border-left: .5px solid grey;
+   border-right: .5px solid grey;
+}
+
+.legendTitleOut {
+    background-color: #FBA4A4; 
+    border-right: .5px solid grey;
+    border-top: .5px solid grey;
+ }
+
+ .legendInfoBox {
+    background-color: #FBFBFB;
+    border-left: .5px solid grey;
+    border-right: .5px solid grey;
+    border-bottom: .5px solid grey;
+ }
+
+
+
+
+
