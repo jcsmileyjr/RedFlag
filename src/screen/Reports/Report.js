@@ -32,13 +32,21 @@ export default function Reports(props) {
                             <Row>
                                 <Col xs={{span:5, offset:1}} sm={{span:5, offset:2}} className="lineTitle">Incident Type:</Col>
                                 <Col xs={4}>{report.incidentType}</Col>
-                            </Row>
+                            </Row>                            
                             <Row>
                                 <Col xs={{span:5, offset:1}} sm={{span:5, offset:2}} className="lineTitle">Days Remaining:</Col>
                                 <Col xs={4}>{report.daysRemaining}</Col>
                             </Row>
 
+                            {props.auth==="supervisor" &&                        
+                                <Row>
+                                    <Col xs={{span:5, offset:1}} sm={{span:5, offset:2}} className="lineTitle">Agent Name:</Col>
+                                    <Col xs={4}>{report.agentName}</Col>
+                                </Row>                        
+                            }
+
                             {props.auth === "supervisor" &&
+                            
                                 <div className="center deleteButtonStyle">
                                     <ActionButton className="center" buttonColor="danger" title="Close Out" submit={()=>{context.closeReport(index)}} />                                
                                 </div>
