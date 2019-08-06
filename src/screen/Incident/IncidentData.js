@@ -36,7 +36,7 @@ export function updateActiveCasesUponLogin(data){
 export function GetReports(){
     updateDaysRemaining();//Update the current database remaining days data
     updateColorRepersentingTimeRemaining();//Update the current database color based on days remaining.    
-    sortDataByDaysRemaining(); //Sort the data from red to green color coded incidents incident 
+    sortDataByDaysRemaining(); //Sort the data from red to green color coded incidents incident     
     return activeCases;
 }
 
@@ -61,11 +61,11 @@ function updateDaysRemaining(){
         const numberOfMilliseconds = Math.abs(todayDate.getTime() - reportDate);//Get difference of report date and today's date 
         const calcultedDaysRemaining = Math.floor(numberOfMilliseconds/(1000*3600*24));//Number of days between incident date and today's date
 
-        if(report.incidentType === "Crimminal" || report.incidentType ==="Minor Gaming"){
+        if(report.incidentType === "Criminal" || report.incidentType ==="Minor Gaming"){
             report.daysRemaining = 30 - calcultedDaysRemaining;//Assign days remaining based on pre-determine allotted days to finish case
         }
 
-        if(report.incidentType === "Disputes" || report.incidentType ==="Complaint"){
+        if(report.incidentType === "Dispute" || report.incidentType ==="Complaint"){
             report.daysRemaining = 10 - calcultedDaysRemaining;//Assign days remaining based on pre-determine allotted days to finish case
         }
 

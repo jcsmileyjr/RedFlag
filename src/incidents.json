@@ -1,20 +1,20 @@
 {
   "reports": [
     {
-      "id":1,
+      "id": 1,
       "agentName": "test",
       "patronName": "King Kong",
       "casinoName": "GoldStrike",
-      "incidentType": "Crimminal",
+      "incidentType": "Criminal",
       "incidentDate": "2019-07-15"
     },
     {
-      "id":2,
+      "id": 2,
       "agentName": "jHenry123",
       "patronName": "Junior",
       "casinoName": "GoldStrike",
       "incidentType": "Minor Gaming",
       "incidentDate": "2019-07-25"
-    }    
+    }
   ]
 }

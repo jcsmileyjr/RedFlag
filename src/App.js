@@ -88,7 +88,6 @@ class App extends Component {
       }else{//supervisor creates a incident
         newIncident = CreateNewIncident(this.state.patronName,this.state.casino, this.state.incidentType, this.state.incidentDate, this.state.incidentAgentName);
       }      
-
       var info = {"name": this.state.userName, "password":this.state.pwd, "newIncident":newIncident};//object to be sent to server
       
       fetch('/newReport', {method:"PUT", body:JSON.stringify(info), headers:{'Content-Type':'application/json'}});   
