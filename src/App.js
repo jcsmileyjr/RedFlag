@@ -111,7 +111,7 @@ class App extends Component {
 
   render(){
     return (
-        <Container>
+        <Container >
           <Row>
             {this.state.currentView === "logIn" && 
               <UserLogInProvider value={{
@@ -145,6 +145,7 @@ class App extends Component {
                 <Reports auth = {this.state.authoration} />
               </ReportState.Provider>
             }
+            
           </Row>
         </Container>
     );

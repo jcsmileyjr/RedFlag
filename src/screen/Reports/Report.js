@@ -39,7 +39,7 @@ export default function Reports(props) {
                             </Row>
 
                             {props.auth === "supervisor" &&
-                                <div className="center">
+                                <div className="center deleteButtonStyle">
                                     <ActionButton className="center" buttonColor="danger" title="Close Out" submit={()=>{context.closeReport(index)}} />                                
                                 </div>
                             }
