@@ -12,10 +12,7 @@ import {updateActiveCasesUponLogin} from './screen/Incident/IncidentData';//Meth
 import {updateListOfAgents} from './screen/Incident/IncidentData';//Method to update app's list of agents from server during log in
 
 //notes from https://hackernoon.com/how-do-i-use-react-context-3eeb879169a2 on how to use React's Context
-const UserLogIn = React.createContext({});//Context for Login screen and elements
-const UserLogInProvider = UserLogIn.Provider;
-export const UserLogInConsumer = UserLogIn.Consumer;
-
+export const LogInState = React.createContext({});//Context for Login screen and elements 
 export const IncidentState = React.createContext({});//Context for incident report's screen and elements
 export const ReportState = React.createContext({});//Context for report's screen and elements
 
@@ -114,13 +111,13 @@ class App extends Component {
         <Container >
           <Row>
             {this.state.currentView === "logIn" && 
-              <UserLogInProvider value={{
+              <LogInState.Provider value={{
                 getUserName: (value)=> this.setState({userName:value}),
                 getPwd: (value) => this.setState({pwd:value}),
                 logIn: () => this.isLogIn(this.confirmLogIn),
                 }}>
                 <Login error={this.state.loginError} />
-              </UserLogInProvider> 
+              </LogInState.Provider> 
             }
             {this.state.currentView === "incident" && 
               <IncidentState.Provider value={{

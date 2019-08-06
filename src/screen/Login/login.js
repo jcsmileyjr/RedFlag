@@ -2,7 +2,7 @@ import React from "react";
 import '../../App.css';//global stylesheet
 import './login.css';//stylesheet for this component
 import {Container, Row, Col} from 'react-bootstrap';
-import { UserLogInConsumer } from "../../App";//Context api exported in to pass methods to input and submit elements.
+import { LogInState } from "../../App";//Context api exported in to pass methods to input and submit elements.
 
 import InputText from '../../components/InputText/InputText.js';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
@@ -13,7 +13,7 @@ import Footer from '../../components/Footer/Footer';
 export default function Login(props) {
     return(
         //Use a Context api exported from App.js to update state with methods
-        <UserLogInConsumer>
+        <LogInState.Consumer>
             {context => 
                 <Container className="center">
                     <Nav menu={false} />
@@ -36,6 +36,6 @@ export default function Login(props) {
                     <Footer />
                 </Container>
             }
-        </UserLogInConsumer>
+        </LogInState.Consumer>
     );
 }
