@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import './incident.css';//stylesheet for this component
 import {Container, Row, Col, DropdownButton, Dropdown} from 'react-bootstrap';
-import {IncidentReport} from '../../App';//Context state transferring shared state and funtionality  
-import {getListOfAgents} from './IncidentData';
+import {IncidentState} from '../../App';//Context state transferring shared state and funtionality  
+import {getListOfAgents} from './IncidentData';//List of all agent names
 
 import Nav from '../../components/Nav/Nav';
 import InputText from '../../components/InputText/InputText';
@@ -23,7 +23,7 @@ export default function Incident(props) {
 
     const agents = getListOfAgents();
     return(
-        <IncidentReport.Consumer>
+        <IncidentState.Consumer>
             {context => 
                 <Container className="center">
                     {/*Nav Bar */}
@@ -103,6 +103,6 @@ export default function Incident(props) {
                     </section>                                
                 </Container>
             }
-        </IncidentReport.Consumer>
+        </IncidentState.Consumer>
     );
 }

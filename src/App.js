@@ -16,7 +16,7 @@ const UserLogIn = React.createContext({});//Context for Login screen and element
 const UserLogInProvider = UserLogIn.Provider;
 export const UserLogInConsumer = UserLogIn.Consumer;
 
-export const IncidentReport = React.createContext({});//Context for incident report's screen and elements
+export const IncidentState = React.createContext({});//Context for incident report's screen and elements
 export const ReportState = React.createContext({});//Context for report's screen and elements
 
 class App extends Component {
@@ -123,7 +123,7 @@ class App extends Component {
               </UserLogInProvider> 
             }
             {this.state.currentView === "incident" && 
-              <IncidentReport.Provider value={{
+              <IncidentState.Provider value={{
                 getPatronName: (value)=> this.setState({patronName:value}),
                 getCasino: (value) => this.setState({casino:value}),
                 getIncidentType: (value) => this.setState({incidentType:value}),
@@ -134,7 +134,7 @@ class App extends Component {
                 showReports:() => this.setState({currentView: "reports"}),
               }}>
                 <Incident auth = {this.state.authoration} formError={this.state.incidentError} />
-              </IncidentReport.Provider>
+              </IncidentState.Provider>
             }
             {this.state.currentView ==="reports" &&
               <ReportState.Provider value={{
