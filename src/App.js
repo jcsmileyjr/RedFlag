@@ -12,11 +12,8 @@ import {updateActiveCasesUponLogin} from './screen/Incident/IncidentData';//Meth
 import {updateListOfAgents} from './screen/Incident/IncidentData';//Method to update app's list of agents from server during log in
 
 //notes from https://hackernoon.com/how-do-i-use-react-context-3eeb879169a2 on how to use React's Context
-const UserLogIn = React.createContext({});//Context for Login screen and elements
-const UserLogInProvider = UserLogIn.Provider;
-export const UserLogInConsumer = UserLogIn.Consumer;
-
-export const IncidentReport = React.createContext({});//Context for incident report's screen and elements
+export const LogInState = React.createContext({});//Context for Login screen and elements 
+export const IncidentState = React.createContext({});//Context for incident report's screen and elements
 export const ReportState = React.createContext({});//Context for report's screen and elements
 
 class App extends Component {
@@ -88,7 +85,6 @@ class App extends Component {
       }else{//supervisor creates a incident
         newIncident = CreateNewIncident(this.state.patronName,this.state.casino, this.state.incidentType, this.state.incidentDate, this.state.incidentAgentName);
       }      
-
       var info = {"name": this.state.userName, "password":this.state.pwd, "newIncident":newIncident};//object to be sent to server
       
       fetch('/newReport', {method:"PUT", body:JSON.stringify(info), headers:{'Content-Type':'application/json'}});   
@@ -112,19 +108,19 @@ class App extends Component {
 
   render(){
     return (
-        <Container>
+        <Container >
           <Row>
             {this.state.currentView === "logIn" && 
-              <UserLogInProvider value={{
+              <LogInState.Provider value={{
                 getUserName: (value)=> this.setState({userName:value}),
                 getPwd: (value) => this.setState({pwd:value}),
                 logIn: () => this.isLogIn(this.confirmLogIn),
                 }}>
                 <Login error={this.state.loginError} />
-              </UserLogInProvider> 
+              </LogInState.Provider> 
             }
             {this.state.currentView === "incident" && 
-              <IncidentReport.Provider value={{
+              <IncidentState.Provider value={{
                 getPatronName: (value)=> this.setState({patronName:value}),
                 getCasino: (value) => this.setState({casino:value}),
                 getIncidentType: (value) => this.setState({incidentType:value}),
@@ -135,7 +131,7 @@ class App extends Component {
                 showReports:() => this.setState({currentView: "reports"}),
               }}>
                 <Incident auth = {this.state.authoration} formError={this.state.incidentError} />
-              </IncidentReport.Provider>
+              </IncidentState.Provider>
             }
             {this.state.currentView ==="reports" &&
               <ReportState.Provider value={{
@@ -146,6 +142,7 @@ class App extends Component {
                 <Reports auth = {this.state.authoration} />
               </ReportState.Provider>
             }
+            
           </Row>
         </Container>
     );
